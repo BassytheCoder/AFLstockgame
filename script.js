@@ -1,124 +1,77 @@
-// AFL Stock Exchange Game (Standalone Version - No Firebase)
-
 let balance = 1000;
-let holdings = {};
-
 const players = [
-    { name: "Bayley Fritsch", team: "Melbourne", stockPrice: 8.97 },
-    { name: "Charlie Spargo", team: "Melbourne", stockPrice: 2.5 },
-    { name: "Kade Chandler", team: "Melbourne", stockPrice: 8.991 },
-    { name: "Trent Rivers", team: "Melbourne", stockPrice: 11.026 },
-    { name: "Jake Bowey", team: "Melbourne", stockPrice: 5.75 },
-    { name: "Hayden McLean", team: "Sydney", stockPrice: 7.604 },
-    { name: "Nick Blakey", team: "Sydney", stockPrice: 13.331 },
-    { name: "James Rowbottom", team: "Sydney", stockPrice: 13.517 }
+    { name: "Bayley Fritsch", team: "Melbourne", price: 8.97 },
+    { name: "Charlie Spargo", team: "Melbourne", price: 2.5 },
+    { name: "Kade Chandler", team: "Melbourne", price: 8.991 },
+    { name: "Trent Rivers", team: "Melbourne", price: 11.026 }
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-    setupUI();
-});
-
-function setupUI() {
-    console.log("Setting up UI...");
-    document.body.insertAdjacentHTML('beforeend', `
-        <h2>Balance: <span id="balance">$1000.00</span></h2>
-        <h2>Stock Holdings</h2>
-        <table id="holdingsTable">
-            <thead>
-                <tr>
-                    <th>Player</th>
-                    <th>Team</th>
-                    <th>Shares Owned</th>
-                    <th>Price per Share</th>
-                    <th>Profit/Loss</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <h2>Available Players</h2>
-        <table id="playersTable">
-            <thead>
-                <tr>
-                    <th>Player</th>
-                    <th>Team</th>
-                    <th>Stock Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    `);
-    console.log("UI setup complete. Loading players...");
-    loadPlayers();
-    updateUI();
-}
-
-function loadPlayers() {
-    console.log("Loading players...");
-    const tableBody = document.querySelector("#playersTable tbody");
-    if (!tableBody) {
-        console.error("Players table not found!");
+function setUsername() {
+    let username = document.getElementById("username").value;
+    if (username.trim() === "") {
+        alert("Please enter a username.");
         return;
     }
-    tableBody.innerHTML = "";
+    document.getElementById("user-info").innerHTML = `<h3>Welcome, ${username}!</h3>`;
+}
 
-    players.forEach((player) => {
-        let row = document.createElement("tr");
-
-        let teamStyle = "";
-        if (player.team === 'Melbourne') {
-            teamStyle = "background-color: navy; color: red; padding: 5px; border-radius: 5px;";
-        } else if (player.team === 'Sydney') {
-            teamStyle = "background-color: red; color: white; padding: 5px; border-radius: 5px;";
-        }
-        
-        row.innerHTML = `
+function populatePlayers() {
+    let table = document.getElementById("players-table");
+    table.innerHTML = "";
+    players.forEach((player, index) => {
+        let row = `<tr>
             <td>${player.name}</td>
-            <td><span style="${teamStyle}">${player.team}</span></td>
-            <td>$${player.stockPrice.toFixed(2)}</td>
+            <td>${player.team}</td>
+            <td>$${player.price.toFixed(2)}</td>
             <td>
-                <button onclick="buyPlayer('${player.name}')">Buy</button>
+                <button onclick="buyStock(${index})">Buy</button>
+                <button onclick="shortStock(${index})">Short</button>
             </td>
-        `;
-        
-        tableBody.appendChild(row);
+        </tr>`;
+        table.innerHTML += row;
     });
-    console.log("Players loaded successfully.");
 }
 
-function buyPlayer(name) {
-    const player = players.find(p => p.name === name);
-    if (!player) return;
-    
-    const sharesToBuy = parseInt(prompt(`How many shares of ${name} do you want to buy?`), 10);
-    if (isNaN(sharesToBuy) || sharesToBuy <= 0) {
-        alert("Invalid number of shares.");
+function buyStock(index) {
+    let shares = parseInt(prompt("Enter number of shares to buy:"));
+    if (isNaN(shares) || shares <= 0) return;
+    let cost = shares * players[index].price;
+    if (cost > balance) {
+        alert("Insufficient balance!");
         return;
     }
-    
-    const totalCost = player.stockPrice * sharesToBuy;
-    if (balance >= totalCost) {
-        balance -= totalCost;
-        if (!holdings[name]) {
-            holdings[name] = { team: player.team, shares: 0, price: player.stockPrice };
-        }
-        holdings[name].shares += sharesToBuy;
-        updateUI();
-    } else {
-        alert("Not enough funds to complete the purchase.");
-    }
+    balance -= cost;
+    updateBalance();
+    addToHoldings(players[index].name, players[index].team, shares, "Buy", players[index].price);
 }
 
-function updateUI() {
-    document.getElementById("balance").textContent = `$${balance.toFixed(2)}`;
-    const holdingsTable = document.querySelector("#holdingsTable tbody");
-    holdingsTable.innerHTML = Object.entries(holdings).map(([player, data]) => `
-        <tr>
-            <td>${player}</td>
-            <td>${data.team}</td>
-            <td>${data.shares}</td>
-            <td>$${data.price.toFixed(2)}</td>
-            <td>$${((players.find(p => p.name === player).stockPrice - data.price) * data.shares).toFixed(2)}</td>
-        </tr>
-    `).join('') || '<tr><td colspan="5">No holdings yet</td></tr>';
+function shortStock(index) {
+    let shares = parseInt(prompt("Enter number of shares to short:"));
+    if (isNaN(shares) || shares <= 0) return;
+    let cost = shares * players[index].price;
+    if (cost > balance) {
+        alert("Insufficient balance!");
+        return;
+    }
+    balance -= cost;
+    updateBalance();
+    addToHoldings(players[index].name, players[index].team, shares, "Short", players[index].price);
 }
+
+function addToHoldings(player, team, shares, type, price) {
+    let table = document.getElementById("holdings-table");
+    let row = `<tr>
+        <td>${player}</td>
+        <td>${team}</td>
+        <td>${shares}</td>
+        <td>${type}</td>
+        <td>$${price.toFixed(2)}</td>
+    </tr>`;
+    table.innerHTML += row;
+}
+
+function updateBalance() {
+    document.getElementById("balance").innerText = balance.toFixed(2);
+}
+
+document.addEventListener("DOMContentLoaded", populatePlayers);
