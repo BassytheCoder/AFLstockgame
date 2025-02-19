@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setupUI() {
+    console.log("Setting up UI...");
     document.body.insertAdjacentHTML('beforeend', `
         <h2>Balance: <span id="balance">$1000.00</span></h2>
         <h2>Stock Holdings</h2>
@@ -47,11 +48,13 @@ function setupUI() {
             <tbody></tbody>
         </table>
     `);
-    setTimeout(loadPlayers, 100); // Ensure the table exists before loading players
+    console.log("UI setup complete. Loading players...");
+    loadPlayers();
     updateUI();
 }
 
 function loadPlayers() {
+    console.log("Loading players...");
     const tableBody = document.querySelector("#playersTable tbody");
     if (!tableBody) {
         console.error("Players table not found!");
@@ -80,6 +83,7 @@ function loadPlayers() {
         
         tableBody.appendChild(row);
     });
+    console.log("Players loaded successfully.");
 }
 
 function buyPlayer(name) {
