@@ -47,27 +47,38 @@ function setupUI() {
             <tbody></tbody>
         </table>
     `);
-    loadPlayers();
+    setTimeout(loadPlayers, 100); // Ensure the table exists before loading players
     updateUI();
 }
 
 function loadPlayers() {
     const tableBody = document.querySelector("#playersTable tbody");
+    if (!tableBody) {
+        console.error("Players table not found!");
+        return;
+    }
     tableBody.innerHTML = "";
+
     players.forEach((player) => {
-        let teamStyle = player.team === 'Melbourne' ? "background-color: navy; color: red; padding: 5px; border-radius: 5px;" : 
-                        player.team === 'Sydney' ? "background-color: red; color: white; padding: 5px; border-radius: 5px;" : "";
-        let row = `
-            <tr>
-                <td>${player.name}</td>
-                <td><span style="${teamStyle}">${player.team}</span></td>
-                <td>$${player.stockPrice.toFixed(2)}</td>
-                <td>
-                    <button onclick="buyPlayer('${player.name}')">Buy</button>
-                </td>
-            </tr>
+        let row = document.createElement("tr");
+
+        let teamStyle = "";
+        if (player.team === 'Melbourne') {
+            teamStyle = "background-color: navy; color: red; padding: 5px; border-radius: 5px;";
+        } else if (player.team === 'Sydney') {
+            teamStyle = "background-color: red; color: white; padding: 5px; border-radius: 5px;";
+        }
+        
+        row.innerHTML = `
+            <td>${player.name}</td>
+            <td><span style="${teamStyle}">${player.team}</span></td>
+            <td>$${player.stockPrice.toFixed(2)}</td>
+            <td>
+                <button onclick="buyPlayer('${player.name}')">Buy</button>
+            </td>
         `;
-        tableBody.innerHTML += row;
+        
+        tableBody.appendChild(row);
     });
 }
 
@@ -107,4 +118,3 @@ function updateUI() {
         </tr>
     `).join('') || '<tr><td colspan="5">No holdings yet</td></tr>';
 }
-
