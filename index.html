@@ -3,27 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFL Stock Exchange</title>
+    <title>AFL Stock Market Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <h1>AFL Stock Exchange</h1>
+    <div id="game-container">
+        <h1>AFL Stock Market Game</h1>
+        <div id="user-info">
+            <label for="username">Enter Your Username:</label>
+            <input type="text" id="username" placeholder="Username">
+            <button onclick="setUsername()">Start</button>
+        </div>
+        
+        <div id="player-list">
+            <h2>Players</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Stock Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="players-table">
+                    <!-- Players will be populated here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="holdings">
+            <h2>Your Holdings</h2>
+            <p>Balance: $<span id="balance">1000.00</span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Shares</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="holdings-table">
+                    <!-- User's holdings will appear here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
     
-    <table id="playersTable">
-        <thead>
-            <tr>
-                <th>Player</th>
-                <th>Team</th>
-                <th>Stock Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Players will be added dynamically here -->
-        </tbody>
-    </table>
-
     <script src="script.js"></script>
 </body>
 </html>
