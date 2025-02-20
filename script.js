@@ -13,19 +13,10 @@ let players = [
 
 let currentHoldings = JSON.parse(localStorage.getItem("currentHoldings")) || [];
 
-// Step 1: Calculate the total value of the holdings
-function calculateHoldingsValue() {
-    return currentHoldings.reduce((total, holding) => {
-        return total + (holding.shares * holding.price);
-    }, 0);
-}
-
-// Step 2: Update the balance to reflect the total value of the holdings
+// Function to update the displayed balance
 function updateBalance() {
-    let holdingsValue = calculateHoldingsValue();
-    let totalBalance = balance + holdingsValue;
-    document.getElementById("balance").innerText = totalBalance.toFixed(2);
-    localStorage.setItem("balance", totalBalance.toFixed(2));
+    document.getElementById("balance").innerText = balance.toFixed(2);
+    localStorage.setItem("balance", balance.toFixed(2));
 }
 
 function setUsername() {
@@ -82,7 +73,6 @@ function shortStock(index) {
     addToHoldings(players[index].name, players[index].team, shares, "Short", players[index].price);
 }
 
-// Step 3: Ensure balance is updated appropriately when holdings change
 function addToHoldings(player, team, shares, type, price) {
     currentHoldings.push({ player, team, shares, type, price });
     localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
