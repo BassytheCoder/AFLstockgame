@@ -43,6 +43,7 @@ function paginatePlayers(players) {
 }
 
 function filterByTeam(team) {
+    console.log(`Filtering by team: ${team}`);
     return players.filter(player => player.team === team);
 }
 
@@ -53,6 +54,7 @@ function sortByPrice(order = 'asc') {
 }
 
 function populateTeamFilter() {
+    console.log("Populating team filter");
     const teamFilter = document.getElementById("teamFilter");
     const teams = [...new Set(players.map(player => player.team))];
     teams.forEach(team => {
@@ -64,7 +66,7 @@ function populateTeamFilter() {
 }
 
 function populatePlayers() {
-    console.log("populatePlayers function called");
+    console.log("Populating players");
     let filteredPlayers = players;
 
     const teamFilter = document.getElementById("teamFilter").value;
