@@ -84,9 +84,12 @@ function populatePlayers() {
     paginatedPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td>
+            <td onclick="toggleStats(${index})">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
+                <div class="player-stats hidden" id="stats-${index}">
+                    ${player.disposals.toFixed(1)} Disp ${player.marks} Mks ${player.tackles} Tckl ${player.scoreInvolvements} Si
+                </div>
             </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
@@ -99,6 +102,11 @@ function populatePlayers() {
     });
 
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
+}
+
+function toggleStats(index) {
+    const statsDiv = document.getElementById(`stats-${index}`);
+    statsDiv.classList.toggle("hidden");
 }
 
 function buyStock(index) {
@@ -213,7 +221,11 @@ function loadPlayerData() {
                     name: columns[0],
                     team: columns[1],
                     position: columns[4], // Assuming position is in the 5th column
-                    price: parseFloat(columns[6]) // Assuming price is in the 7th column
+                    price: parseFloat(columns[6]), // Assuming price is in the 7th column
+                    disposals: parseFloat(columns[16]), // Assuming disposals column
+                    marks: parseInt(columns[17]), // Assuming marks column
+                    tackles: parseInt(columns[18]), // Assuming tackles column
+                    scoreInvolvements: parseInt(columns[19]) // Assuming score involvements column
                 };
             });
             populateTeamFilter();
