@@ -84,12 +84,10 @@ function populatePlayers() {
     paginatedPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td onclick="toggleStats(${index})">
+            <td onclick="loadAndDisplayStats(${index}, '${player.name}')">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
-                <div class="player-stats hidden" id="stats-${index}">
-                    ${player.disposals.toFixed(1)} Disp ${player.marks} Mks ${player.tackles} Tckl ${player.scoreInvolvements} Si
-                </div>
+                <div class="player-stats hidden" id="stats-${index}"></div>
             </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
@@ -104,9 +102,29 @@ function populatePlayers() {
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
 
-function toggleStats(index) {
+function loadAndDisplayStats(index, playerName) {
     const statsDiv = document.getElementById(`stats-${index}`);
-    statsDiv.classList.toggle("hidden");
+    if (statsDiv.classList.contains("hidden")) {
+        fetch('afl-player-stats-2024.csv')
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n');
+                const playerRow = rows.find(row => row.includes(playerName));
+                if (playerRow) {
+                    const columns = playerRow.split(',');
+                    const playerStats = `
+                        ${parseFloat(columns[16]).toFixed(1)} Disp 
+                        ${parseFloat(columns[17]).toFixed(1)} Mks 
+                        ${parseFloat(columns[18]).toFixed(1)} Tckl 
+                        ${parseFloat(columns[19]).toFixed(1)} Si
+                    `;
+                    statsDiv.innerHTML = playerStats;
+                }
+                statsDiv.classList.remove("hidden");
+            });
+    } else {
+        statsDiv.classList.toggle("hidden");
+    }
 }
 
 function buyStock(index) {
@@ -222,10 +240,6 @@ function loadPlayerData() {
                     team: columns[1],
                     position: columns[4], // Assuming position is in the 5th column
                     price: parseFloat(columns[6]), // Assuming price is in the 7th column
-                    disposals: parseFloat(columns[16]), // Assuming disposals column
-                    marks: parseInt(columns[49]), // Assuming marks column
-                    tackles: parseInt(columns[64]), // Assuming tackles column
-                    scoreInvolvements: parseInt(columns[76]) // Assuming score involvements column
                 };
             });
             populateTeamFilter();
