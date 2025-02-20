@@ -61,7 +61,6 @@ button:hover {
     background-color: #218838;
 }
 
-/* Add these styles for the icon and pop-up */
 #holdings-icon {
     position: fixed;
     top: 10px;
@@ -89,7 +88,6 @@ button:hover {
     margin-top: 0;
 }
 
-/* Add these styles for the fixed holdings box */
 #holdings-box {
     position: fixed;
     top: 10px;
@@ -129,7 +127,6 @@ button:hover {
     font-size: 20px;
 }
 
-/* Add these styles for the Sell Position button */
 button.sell {
     background-color: orange;
     color: white;
@@ -141,3 +138,26 @@ button.sell {
 button.sell:hover {
     background-color: darkorange;
 }
+
+/* Team colors */
+.adelaide {
+    background-color: #002B5C; /* Primary color */
+    color: #FED102;           /* Secondary color */
+}
+
+.brisbane {
+    background-color: #A30046; /* Primary color */
+    color: #FDBE57;            /* Secondary color */
+}
+
+.carlton {
+    background-color: #031A6E; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.collingwood {
+    background-color: #000000; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+/* Add more teams as needed */
