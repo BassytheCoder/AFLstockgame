@@ -108,3 +108,11 @@ button:hover {
 #holdings-overlay .holding-item b {
     font-weight: bold;
 }
+
+#holdings-overlay .holding-item.buy b {
+    color: green;
+}
+
+#holdings-overlay .holding-item.short b {
+    color: red;
+}
