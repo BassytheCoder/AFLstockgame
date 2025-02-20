@@ -14,7 +14,21 @@
             <input type="text" id="username" placeholder="Username">
             <button onclick="setUsername()">Start</button>
         </div>
-        
+
+        <div>
+            <label for="teamFilter">Filter by Team:</label>
+            <select id="teamFilter" onchange="populatePlayers()">
+                <option value="">All Teams</option>
+                <!-- Add options for each team dynamically or statically -->
+            </select>
+
+            <label for="sortOrder">Sort by Price:</label>
+            <select id="sortOrder" onchange="populatePlayers()">
+                <option value="asc">Price: Low to High</option>
+                <option value="desc">Price: High to Low</option>
+            </select>
+        </div>
+
         <div id="player-list">
             <h2>Players</h2>
             <table>
@@ -31,7 +45,13 @@
                 </tbody>
             </table>
         </div>
-        
+
+        <div id="pagination">
+            <button onclick="prevPage()">Previous</button>
+            <span id="page-number">Page 1</span>
+            <button onclick="nextPage()">Next</button>
+        </div>
+
         <div id="holdings">
             <h2>Your Holdings</h2>
             <p>Balance: $<span id="balance">1000.00</span></p>
@@ -50,7 +70,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Add these elements for the icon and pop-up -->
         <div id="holdings-icon" onclick="toggleHoldingsOverlay()">📈</div>
         <div id="holdings-popup" class="hidden">
