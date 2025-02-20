@@ -1,4 +1,4 @@
-let balance = 1000;
+let balance = parseFloat(localStorage.getItem("balance")) || 1000;
 let players = [
     { name: "Marcus Bontempelli", team: "Western Bulldogs", price: 19.079 },
     { name: "Patrick Cripps", team: "Carlton", price: 18.317 },
@@ -83,6 +83,7 @@ function addToHoldings(player, team, shares, type, price) {
 
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
+    localStorage.setItem("balance", balance.toFixed(2));
 }
 
 function toggleHoldingsOverlay() {
@@ -116,5 +117,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (storedUsername) {
         document.getElementById("user-info").innerHTML = `<h3>Welcome back, ${storedUsername}!</h3>`;
     }
+    updateBalance();
+    currentHoldings.forEach(holding => {
+        let table = document.getElementById("holdings-table");
+        let row = `<tr>
+            <td>${holding.player}</td>
+            <td>${holding.team}</td>
+            <td>${holding.shares}</td>
+            <td>${holding.type}</td>
+            <td>$${holding.price.toFixed(2)}</td>
+        </tr>`;
+        table.innerHTML += row;
+    });
     populatePlayers();
 });
