@@ -33,6 +33,11 @@ body {
     background-color: #fff;
 }
 
+.button-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
 button.short {
     background-color: #dc3545;
 }
@@ -65,11 +70,6 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
-}
-
-.button-cell {
-    text-align: center;
-    vertical-align: middle;
 }
 
 button:hover {
@@ -160,6 +160,17 @@ button.sell:hover {
     border-radius: 20px;
     color: white;
     font-weight: bold;
+}
+
+.player-stats {
+    display: none;
+    font-size: 0.9em;
+    margin-top: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.player-stats.hidden {
+    display: block;
 }
 
 /* Team colors */
