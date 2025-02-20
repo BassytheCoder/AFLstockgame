@@ -90,7 +90,7 @@ function populatePlayers() {
             </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
-            <td>
+            <td class="button-cell">
                 <button onclick="buyStock(${index})">Buy</button>
                 <button class="short" onclick="shortStock(${index})">Short</button>
             </td>
