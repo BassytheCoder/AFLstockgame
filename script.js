@@ -7,7 +7,10 @@ let players = [
     { name: "Sam Durham", team: "Essendon", price: 11.19 },
     { name: "Harley Reid", team: "West Coast Eagles", price: 10.12 },
     { name: "Isaac Heeney", team: "Sydney", price: 17.304 },
-    { name: "Jayden Short", team: "Richmond", price: 11.134 },
+    { name: "Will Ashcroft", team: "Brisbane", price: 10.821 },
+    { name: "Patrick Dangerfield", team: "Geelong", price: 12.911 },
+    { name: "Zak Butters", team: "Port Adelaide", price: 14.923 },
+    { name: "Jake Soligo", team: "Adelaide", price: 8.225 },
     // ... (other players)
 ];
 
@@ -76,17 +79,7 @@ function shortStock(index) {
 function addToHoldings(player, team, shares, type, price) {
     currentHoldings.push({ player, team, shares, type, price });
     localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
-    let table = document.getElementById("holdings-table");
-    let row = `<tr>
-        <td>${player}</td>
-        <td>${team}</td>
-        <td>${shares}</td>
-        <td>${type}</td>
-        <td>$${price.toFixed(2)}</td>
-        <td><button class="sell" onclick="sellStock('${player}')">Sell Position</button></td>
-    </tr>`;
-    table.innerHTML += row;
-    updateBalance(); // Update balance after adding to holdings
+    updateHoldingsTable();
 }
 
 function sellStock(playerName) {
@@ -136,13 +129,7 @@ function updateHoldingsTable() {
 
 function toggleHoldingsOverlay() {
     const overlay = document.getElementById("holdings-overlay");
-    if (overlay.classList.contains("hidden")) {
-        overlay.classList.remove("hidden");
-        overlay.style.display = "block";
-    } else {
-        overlay.classList.add("hidden");
-        overlay.style.display = "none";
-    }
+    overlay.classList.toggle("hidden");
 
     // Clear existing content
     overlay.innerHTML = '<span class="close-button" onclick="closeOverlay()">x</span>';
@@ -154,6 +141,8 @@ function toggleHoldingsOverlay() {
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
         overlay.innerHTML += holdingItem;
     });
+
+    overlay.style.display = overlay.classList.contains("hidden") ? "none" : "block";
 }
 
 function closeOverlay() {
