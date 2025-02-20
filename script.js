@@ -144,14 +144,11 @@ function toggleHoldingsOverlay() {
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
         overlay.innerHTML += holdingItem;
     });
-
-    overlay.style.display = overlay.classList.contains("hidden") ? "none" : "block";
 }
 
 function closeOverlay() {
     const overlay = document.getElementById("holdings-overlay");
     overlay.classList.add("hidden");
-    overlay.style.display = "none";
 }
 
 // Attach the function to the graph emoji
