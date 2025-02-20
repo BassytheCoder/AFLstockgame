@@ -1,6 +1,4 @@
 let balance = parseFloat(localStorage.getItem("balance")) || 1000;
-let currentPage = 1;
-const playersPerPage = 20;
 
 const players = [
     { name: "Marcus Bontempelli", team: "Western Bulldogs", price: 19.079 },
@@ -343,194 +341,8 @@ const players = [
     { name: "Wayne Milera", team: "Adelaide", price: 6.667 },
     { name: "Jordan Dawson", team: "Adelaide", price: 13.386 },
     { name: "Ben Keays", team: "Adelaide", price: 10.543 },
-    { name: "Darcy Fogarty", team: "Adelaide", price: 10.2 }
-    { name: "Kysaiah Pickett", team: "Melbourne", price: 11.7 },
-    { name: "Taj Woewodin", team: "Melbourne", price: 3.475 },
-    { name: "Tom McDonald", team: "Melbourne", price: 10.3 },
-    { name: "Ben Brown", team: "Melbourne", price: 4.2 },
-    { name: "Marty Hore", team: "Melbourne", price: 4.267 },
-    { name: "Lachlan Bramble", team: "Western Bulldogs", price: 8.608 },
-    { name: "Aaron Naughton", team: "Western Bulldogs", price: 10.09 },
-    { name: "Tim English", team: "Western Bulldogs", price: 12.483 },
-    { name: "Laitham Vandermeer", team: "Western Bulldogs", price: 5.342 },
-    { name: "Nick Coffield", team: "Western Bulldogs", price: 3.25 },
-    { name: "Rhylee West", team: "Western Bulldogs", price: 8.329 },
-    { name: "Ed Richards", team: "Western Bulldogs", price: 14.605 },
-    { name: "Lachlan McNeil", team: "Western Bulldogs", price: 8.108 },
-    { name: "Jamarra Ugle-Hagan", team: "Western Bulldogs", price: 6.618 },
-    { name: "Cody Weightman", team: "Western Bulldogs", price: 8.218 },
-    { name: "Harvey Gallagher", team: "Western Bulldogs", price: 4.695 },
-    { name: "Ryley Sanders", team: "Western Bulldogs", price: 6.493 },
-    { name: "Liam Jones", team: "Western Bulldogs", price: 9.629 },
-    { name: "Tom Liberatore", team: "Western Bulldogs", price: 14.356 },
-    { name: "Adam Treloar", team: "Western Bulldogs", price: 15.887 },
-    { name: "Jason Johannisen", team: "Western Bulldogs", price: 8.2 },
-    { name: "Caleb Daniel", team: "Western Bulldogs", price: 7.1 },
-    { name: "Marcus Bontempelli", team: "Western Bulldogs", price: 19.079 },
-    { name: "James Harmes", team: "Western Bulldogs", price: 8.067 },
-    { name: "Rory Lobb", team: "Western Bulldogs", price: 9.55 },
-    { name: "Bailey Williams", team: "Western Bulldogs", price: 8.9 },
-    { name: "Bailey Dale", team: "Western Bulldogs", price: 13.242 },
-    { name: "Buku Khamis", team: "Western Bulldogs", price: 6.041 },
-    { name: "Willem Drew", team: "Port Adelaide", price: 11.642 },
-    { name: "Connor Rozee", team: "Port Adelaide", price: 11.67 },
-    { name: "Esava Ratugolea", team: "Port Adelaide", price: 6.974 },
-    { name: "Kane Farrell", team: "Port Adelaide", price: 9.605 },
-    { name: "Brandon Zerk-Thatcher", team: "Port Adelaide", price: 7.396 },
-    { name: "Jed McEntee", team: "Port Adelaide", price: 3.779 },
-    { name: "Todd Marshall", team: "Port Adelaide", price: 5.447 },
-    { name: "Jackson Mead", team: "Port Adelaide", price: 7.558 },
-    { name: "Zak Butters", team: "Port Adelaide", price: 15.581 },
-    { name: "Miles Bergman", team: "Port Adelaide", price: 9.258 },
-    { name: "Lachie Jones", team: "Port Adelaide", price: 7.138 },
-    { name: "Jason Horne-Francis", team: "Port Adelaide", price: 12.033 },
-    { name: "Francis Evans", team: "Port Adelaide", price: 4.388 },
-    { name: "Travis Boak", team: "Port Adelaide", price: 9.196 },
-    { name: "Charlie Dixon", team: "Port Adelaide", price: 8.683 },
-    { name: "Ollie Wines", team: "Port Adelaide", price: 11.28 },
-    { name: "Aliir Aliir", team: "Port Adelaide", price: 9.132 },
-    { name: "Willie Rioli", team: "Port Adelaide", price: 8.145 },
-    { name: "Jeremy Finlayson", team: "Port Adelaide", price: 6.708 },
-    { name: "Darcy Byrne-Jones", team: "Port Adelaide", price: 8.45 },
-    { name: "Ryan Burton", team: "Port Adelaide", price: 8.06 },
-    { name: "Dan Houston", team: "Port Adelaide", price: 13.909 },
-    { name: "Ivan Soldo", team: "Port Adelaide", price: 10.85 },
-    { name: "Oscar Allen", team: "West Coast", price: 6.318 },
-    { name: "Bailey J. Williams", team: "West Coast", price: 8.783 },
-    { name: "Jack Petruccelle", team: "West Coast", price: 6.65 },
-    { name: "Luke Edwards", team: "West Coast", price: 4.008 },
-    { name: "Callum Jamieson", team: "West Coast", price: 5.175 },
-    { name: "Tyler Brockman", team: "West Coast", price: 5.87 },
-    { name: "Campbell Chesser", team: "West Coast", price: 5.95 },
-    { name: "Reuben Ginbey", team: "West Coast", price: 9.235 },
-    { name: "Brady Hough", team: "West Coast", price: 5.722 },
-    { name: "Harley Reid", team: "West Coast", price: 11.28 },
-    { name: "Noah Long", team: "West Coast", price: 4.629 },
-    { name: "Andrew Gaff", team: "West Coast", price: 5.8 },
-    { name: "Jamie Cripps", team: "West Coast", price: 9.139 },
-    { name: "Jack Darling", team: "West Coast", price: 6.352 },
-    { name: "Elliot Yeo", team: "West Coast", price: 13.91 },
-    { name: "Jeremy McGovern", team: "West Coast", price: 12.911 },
-    { name: "Tim Kelly", team: "West Coast", price: 13.515 },
-    { name: "Liam Duggan", team: "West Coast", price: 8.905 },
-    { name: "Tom Barrass", team: "West Coast", price: 11.739 },
-    { name: "Tom Cole", team: "West Coast", price: 7.252 },
-    { name: "Jayden Hunt", team: "West Coast", price: 9.275 },
-    { name: "Jake Waterman", team: "West Coast", price: 10.75 },
-    { name: "Alex Witherden", team: "West Coast", price: 8.094 },
-    { name: "Noah Answerth", team: "Brisbane", price: 6.319 },
-    { name: "Deven Robertson", team: "Brisbane", price: 2.6 },
-    { name: "Conor McKenna", team: "Brisbane", price: 4.15 },
-    { name: "Andrew Brayshaw", team: "Fremantle", price: 13.443 },
-    { name: "Jordan Clark", team: "Fremantle", price: 10.287 },
-    { name: "Hayden Young", team: "Fremantle", price: 16.143 },
-    { name: "Jeremy Sharp", team: "Fremantle", price: 7.87 },
-    { name: "Luke Jackson", team: "Fremantle", price: 13.117 },
-    { name: "Caleb Serong", team: "Fremantle", price: 16.978 },
-    { name: "Josh Treacy", team: "Fremantle", price: 10.68 },
-    { name: "Matthew Johnson", team: "Fremantle", price: 6.242 },
-    { name: "Neil Erasmus", team: "Fremantle", price: 2.65 },
-    { name: "Jye Amiss", team: "Fremantle", price: 5.568 },
-    { name: "Tom Emmett", team: "Fremantle", price: 5.754 },
-    { name: "Karl Worner", team: "Fremantle", price: 5.125 },
-    { name: "Michael Walters", team: "Fremantle", price: 5.124 },
-    { name: "Nat Fyfe", team: "Fremantle", price: 9.409 },
-    { name: "James Aish", team: "Fremantle", price: 6.025 },
-    { name: "Alex Pearce", team: "Fremantle", price: 10.067 },
-    { name: "Sam Switkowski", team: "Fremantle", price: 10.88 },
-    { name: "Oscar McDonald", team: "Fremantle", price: -3.3 },
-    { name: "Ethan Hughes", team: "Fremantle", price: 4.333 },
-    { name: "Brennan Cox", team: "Fremantle", price: 7.789 },
-    { name: "Bailey Banfield", team: "Fremantle", price: 8.305 },
-    { name: "Luke Ryan", team: "Fremantle", price: 11.374 },
-    { name: "Michael Frederick", team: "Fremantle", price: 6.455 },
-    { name: "Reef McInnes", team: "Collingwood", price: 5.667 },
-    { name: "Billy Frampton", team: "Collingwood", price: 6.406 },
-    { name: "Zak Jones", team: "St Kilda", price: 7.6 },
-    { name: "Jack Sinclair", team: "St Kilda", price: 14.905 },
-    { name: "Ned McHenry", team: "Adelaide", price: 4.28 },
-    { name: "Mark Keane", team: "Adelaide", price: 10.11 },
-    { name: "Taylor Walker", team: "Adelaide", price: 8.783 },
-    { name: "Mitch Knevitt", team: "Geelong", price: 3.65 },
-    { name: "Oisin Mullin", team: "Geelong", price: 5.458 },
-    { name: "Brandan Parfitt", team: "Geelong", price: 11 },
-    { name: "Brandon Walker", team: "Fremantle", price: 6.974 },
-    { name: "Joshua Draper", team: "Fremantle", price: 5.95 },
-    { name: "Matt Taberner", team: "Fremantle", price: 4.28 },
-    { name: "Jaeger O'Meara", team: "Fremantle", price: 8.245 },
-    { name: "Luke McDonald", team: "North Melbourne", price: 7.195 },
-    { name: "Jy Simpkin", team: "North Melbourne", price: 10.667 },
-    { name: "Harrison Petty", team: "Melbourne", price: 4.925 },
-    { name: "Sam Draper", team: "Essendon", price: 11.431 },
-    { name: "Ben Hobbs", team: "Essendon", price: 5.358 },
-    { name: "Alwyn Davey Jnr", team: "Essendon", price: 3.91 },
-    { name: "Nick Hind", team: "Essendon", price: 7.933 },
-    { name: "Jayden Laverde", team: "Essendon", price: 6.61 },
-    { name: "Corey Warner", team: "Sydney", price: 3.2 },
-    { name: "Ned Moyle", team: "Gold Coast", price: 13.713 },
-    { name: "Jed Walter", team: "Gold Coast", price: 2.729 },
-    { name: "Rory Atkins", team: "Gold Coast", price: 6.2 },
-    { name: "Ben Long", team: "Gold Coast", price: 7.4 },
-    { name: "Oskar Baker", team: "Western Bulldogs", price: 5.267 },
-    { name: "Caleb Poulter", team: "Western Bulldogs", price: 6.057 },
-    { name: "Sam Darcy", team: "Western Bulldogs", price: 9.671 },
-    { name: "Dylan Williams", team: "Port Adelaide", price: 3.32 },
-    { name: "Jase Burgoyne", team: "Port Adelaide", price: 9.291 },
-    { name: "Ben Miller", team: "Richmond", price: 10.095 },
-    { name: "Mykelti Lefau", team: "Richmond", price: 5.73 },
-    { name: "Judson Clarke", team: "Richmond", price: 1.2 },
-    { name: "Tom Brown", team: "Richmond", price: 6.894 },
-    { name: "James Trezise", team: "Richmond", price: 7.214 },
-    { name: "James Peatling", team: "Greater Western Sydney", price: 9.037 },
-    { name: "Harry Barnett", team: "West Coast", price: -1.6 },
-    { name: "Ryan Maric", team: "West Coast", price: 5.158 },
-    { name: "Jamaine Jones", team: "West Coast", price: 4.136 },
-    { name: "Darcy Fort", team: "Brisbane", price: 4.033 },
-    { name: "Elijah Hollands", team: "Carlton", price: 10.005 },
-    { name: "Caleb Marchbank", team: "Carlton", price: 4.2 },
-    { name: "Jacob Weitering", team: "Carlton", price: 10.786 },
-    { name: "Darcy Parish", team: "Essendon", price: 9.742 },
-    { name: "Anthony Caminiti", team: "St Kilda", price: 5.967 },
-    { name: "Angus Hastie", team: "St Kilda", price: 1.72 },
-    { name: "Dan Butler", team: "St Kilda", price: 4.581 },
-    { name: "Jack Williams", team: "West Coast", price: 6.617 },
-    { name: "Taylor Duryea", team: "Western Bulldogs", price: 6.245 },
-    { name: "Jack Macrae", team: "Western Bulldogs", price: 8.537 },
-    { name: "Tyler Sonsie", team: "Richmond", price: 4.75 },
-    { name: "Caleb Mitchell", team: "Sydney", price: 1.5 },
-    { name: "Toby Conway", team: "Geelong", price: 10.4 },
-    { name: "Jack Bowes", team: "Geelong", price: 10.864 },
-    { name: "Harry Morrison", team: "Hawthorn", price: 8.525 },
-    { name: "Lloyd Meek", team: "Hawthorn", price: 12.51 },
-    { name: "Henry Hustwaite", team: "Hawthorn", price: 3.425 },
-    { name: "Patrick Parnell", team: "Adelaide", price: -0.2 },
-    { name: "Brayden Cook", team: "Adelaide", price: 6.36 },
-    { name: "Luke Nankervis", team: "Adelaide", price: 7.775 },
-    { name: "James Tunstill", team: "Brisbane", price: 4.85 },
-    { name: "Charlie Comben", team: "North Melbourne", price: 9.395 },
-    { name: "Hugh Greenwood", team: "North Melbourne", price: 8.233 },
-    { name: "Mitch Georgiades", team: "Port Adelaide", price: 7.205 },
-    { name: "Taylor Adams", team: "Sydney", price: 8.489 },
-    { name: "Loch Rawlinson", team: "West Coast", price: -2.8 },
-    { name: "Josh Rotham", team: "West Coast", price: 3.062 },
-    { name: "Sam Clohesy", team: "Gold Coast", price: 9.165 },
-    { name: "Mac Andrew", team: "Gold Coast", price: 8.65 },
-    { name: "Will Graham", team: "Gold Coast", price: 8.918 },
-    { name: "Ethan Read", team: "Gold Coast", price: 4.475 },
-    { name: "Kane McAuliffe", team: "Richmond", price: 5.344 },
-    { name: "Jack Graham", team: "Richmond", price: 8.943 },
-    { name: "Sam Butler", team: "Hawthorn", price: 2.1 },
-    { name: "Seamus Mitchell", team: "Hawthorn", price: 2.8 },
-    { name: "Max Ramsden", team: "Hawthorn", price: 1.533 },
-    { name: "Koltyn Tholstrup", team: "Melbourne", price: 6.71 },
-    { name: "James O'Donnell", team: "Western Bulldogs", price: 5.471 },
-    { name: "Hugo Garcia", team: "St Kilda", price: 4.478 },
-    { name: "Will Hamill", team: "Adelaide", price: 7.114 },
-    { name: "Sam Walsh", team: "Carlton", price: 13.58 },
-    { name: "Marc Pittonet", team: "Carlton", price: 14.264 },
-    { name: "Sam Powell-Pepper", team: "Port Adelaide", price: 3.933 },
-    { name: "Shannon Neale", team: "Geelong", price: 6.673 },
-    { name: "Connor O'Sullivan", team: "Geelong", price: 5.9 },
+    { name: "Darcy Fogarty", team: "Adelaide", price: 10.2 },
+    
 
     // ... (other players)
 ];
@@ -550,29 +362,6 @@ function setUsername() {
     }
     localStorage.setItem("username", username);
     document.getElementById("user-info").innerHTML = `<h3>Welcome, ${username}!</h3>`;
-}
-
-function changePage(page) {
-    const totalPages = Math.ceil(players.length / playersPerPage);
-    if (page < 1) page = 1;
-    if (page > totalPages) page = totalPages;
-
-    currentPage = page;
-    populatePlayers();
-}
-
-function nextPage() {
-    changePage(currentPage + 1);
-}
-
-function prevPage() {
-    changePage(currentPage - 1);
-}
-
-function paginatePlayers(players) {
-    const start = (currentPage - 1) * playersPerPage;
-    const end = start + playersPerPage;
-    return players.slice(start, end);
 }
 
 function filterByTeam(team) {
@@ -597,11 +386,9 @@ function populatePlayers() {
     const sortOrder = document.getElementById("sortOrder").value;
     filteredPlayers = sortByPrice(sortOrder);
 
-    const paginatedPlayers = paginatePlayers(filteredPlayers);
-
     let table = document.getElementById("players-table");
     table.innerHTML = "";
-    paginatedPlayers.forEach((player, index) => {
+    filteredPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td>${player.name}</td>
@@ -614,8 +401,6 @@ function populatePlayers() {
         </tr>`;
         table.innerHTML += row;
     });
-
-    document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
 
 function buyStock(index) {
