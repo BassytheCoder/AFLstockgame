@@ -162,32 +162,52 @@ function loadAndDisplayStats(index, playerName) {
     }
 }
 
+function openSharesModal(callback) {
+    const modal = document.getElementById("sharesModal");
+    const closeBtn = document.querySelector(".close");
+    const confirmBtn = document.getElementById("confirmShares");
+    modal.style.display = "block";
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+    confirmBtn.onclick = function() {
+        const shares = parseInt(document.getElementById("sharesInput").value);
+        modal.style.display = "none";
+        callback(shares);
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
 function buyStock(index, playerList = players) {
     const player = playerList[index];
-
-    let shares = parseInt(prompt("Enter number of shares to buy:"));
-    if (isNaN(shares) || shares <= 0) return;
-    let cost = shares * player.price;
-    if (cost > balance) {
-        alert("Insufficient balance!");
-        return;
-    }
-    balance -= cost;
-    updateBalance();
-    addToHoldings(player.name, player.team, shares, "Buy", player.price);
-    console.log("Bought shares:", shares, "Cost:", cost, "New Balance:", balance);
+    openSharesModal((shares) => {
+        if (isNaN(shares) || shares <= 0) return;
+        let cost = shares * player.price;
+        if (cost > balance) {
+            alert("Insufficient balance!");
+            return;
+        }
+        balance -= cost;
+        updateBalance();
+        addToHoldings(player.name, player.team, shares, "Buy", player.price);
+        console.log("Bought shares:", shares, "Cost:", cost, "New Balance:", balance);
+    });
 }
 
 function shortStock(index, playerList = players) {
     const player = playerList[index];
-
-    let shares = parseInt(prompt("Enter number of shares to short:"));
-    if (isNaN(shares) || shares <= 0) return;
-    let revenue = shares * player.price;
-    balance += revenue;
-    updateBalance();
-    addToHoldings(player.name, player.team, shares, "Short", player.price);
-    console.log("Shorted shares:", shares, "Revenue:", revenue, "New Balance:", balance);
+    openSharesModal((shares) => {
+        if (isNaN(shares) || shares <= 0) return;
+        let revenue = shares * player.price;
+        balance += revenue;
+        updateBalance();
+        addToHoldings(player.name, player.team, shares, "Short", player.price);
+        console.log("Shorted shares:", shares, "Revenue:", revenue, "New Balance:", balance);
+    });
 }
 
 function addToHoldings(player, team, shares, type, price) {
