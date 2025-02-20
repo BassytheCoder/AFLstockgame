@@ -7,10 +7,11 @@ let players = [
     { name: "Sam Durham", team: "Essendon", price: 11.19 },
     { name: "Harley Reid", team: "West Coast Eagles", price: 10.12 },
     { name: "Isaac Heeney", team: "Sydney", price: 17.304 },
+    { name: "Jayden Short", team: "Richmond", price: 11.134 },
     // ... (other players)
 ];
 
-let currentHoldings = [];
+let currentHoldings = JSON.parse(localStorage.getItem("currentHoldings")) || [];
 
 function setUsername() {
     let username = document.getElementById("username").value;
@@ -68,6 +69,7 @@ function shortStock(index) {
 
 function addToHoldings(player, team, shares, type, price) {
     currentHoldings.push({ player, team, shares, type, price });
+    localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
     let table = document.getElementById("holdings-table");
     let row = `<tr>
         <td>${player}</td>
@@ -94,15 +96,15 @@ function toggleHoldingsOverlay() {
     currentHoldings.forEach(holding => {
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
-        let holdingItem = `<div class="holding-item"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
+        let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
         overlay.innerHTML += holdingItem;
     });
 
     overlay.style.display = overlay.style.display === "none" ? "block" : "none";
 }
 
-// Attach the function to a button or event
-document.getElementById("toggle-overlay-button").addEventListener("click", toggleHoldingsOverlay);
+// Attach the function to the graph emoji
+document.getElementById("holdings-icon").addEventListener("click", toggleHoldingsOverlay);
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
