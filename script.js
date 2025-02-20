@@ -4,10 +4,28 @@ const playersPerPage = 20;
 let players = [];
 let currentHoldings = JSON.parse(localStorage.getItem("currentHoldings")) || [];
 
+function searchPlayers() {
+    let input = document.getElementById('searchBar').value.toLowerCase();
+    let rows = document.getElementById('players-table').getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        let playerName = rows[i].getElementsByTagName('td')[0];
+        if (playerName) {
+            let txtValue = playerName.textContent || playerName.innerText;
+            if (txtValue.toLowerCase().indexOf(input) > -1) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+}
+
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
     localStorage.setItem("balance", balance.toFixed(2));
 }
+
 
 function setUsername() {
     let username = document.getElementById("username").value;
