@@ -83,33 +83,26 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
-function toggleHoldingsPopup() {
-    const popup = document.getElementById("holdings-popup");
-    popup.classList.toggle("hidden");
-    
-    // Clear the existing holdings
-    document.getElementById("holdings-table").innerHTML = "";
+function toggleHoldingsOverlay() {
+    const overlay = document.getElementById("holdings-overlay");
+    overlay.classList.toggle("hidden");
 
-    // Add a header row for visibility
-    let headerRow = `<tr>
-        <th>Player</th>
-        <th>Price</th>
-        <th>Value</th>
-    </tr>`;
-    document.getElementById("holdings-table").innerHTML += headerRow;
+    // Clear existing content
+    overlay.innerHTML = "";
 
-    // Re-add the holdings with the condensed format
+    // Populate with holdings in the condensed format
     currentHoldings.forEach(holding => {
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
-        let row = `<tr>
-            <td>${condensedName}</td>
-            <td>$${holding.price.toFixed(2)}</td>
-            <td>(${value})</td>
-        </tr>`;
-        document.getElementById("holdings-table").innerHTML += row;
+        let holdingItem = `<div class="holding-item"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
+        overlay.innerHTML += holdingItem;
     });
+
+    overlay.style.display = overlay.style.display === "none" ? "block" : "none";
 }
+
+// Attach the function to a button or event
+document.getElementById("toggle-overlay-button").addEventListener("click", toggleHoldingsOverlay);
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
