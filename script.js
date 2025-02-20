@@ -84,7 +84,10 @@ function populatePlayers() {
     paginatedPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td>${player.name}</td>
+            <td>
+                ${player.name}
+                <div class="position-container">${player.position}</div>
+            </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td>
@@ -94,6 +97,9 @@ function populatePlayers() {
         </tr>`;
         table.innerHTML += row;
     });
+
+    document.getElementById("page-number").innerText = `Page ${currentPage}`;
+}
 
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
@@ -209,6 +215,7 @@ function loadPlayerData() {
                 return {
                     name: columns[0],
                     team: columns[1],
+                    position: columns[4], // Assuming position is in the 5th column
                     price: parseFloat(columns[6]) // Assuming price is in the 7th column
                 };
             });
