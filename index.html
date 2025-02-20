@@ -52,6 +52,25 @@
             <button onclick="nextPage()">Next</button>
         </div>
 
+        <div id="holdings">
+            <h2>Your Holdings</h2>
+            <p>Balance: $<span id="balance">1000.00</span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Shares</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="holdings-table">
+                    <!-- User's holdings will appear here -->
+                </tbody>
+            </table>
+        </div>
+
         <div id="holdings-icon" onclick="toggleHoldingsOverlay()">📈</div>
 
         <div id="holdings-overlay" class="hidden">
