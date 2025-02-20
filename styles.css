@@ -127,3 +127,16 @@ button:hover {
     cursor: pointer;
     font-size: 20px;
 }
+
+/* Add these styles for the Sell Position button */
+button.sell {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.sell:hover {
+    background-color: darkorange;
+}
