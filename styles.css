@@ -143,6 +143,53 @@ button:hover {
     color: red;
 }
 
+/* Mobile-specific styles */
+@media only screen and (max-width: 600px) {
+    #game-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #holdings {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    #holdings table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #holdings-box {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    #holdings-box .holding-item {
+        font-size: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #holdings-box .holding-item b {
+        margin-bottom: 5px;
+    }
+
+    #holdings-popup {
+        width: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    #holdings-popup h2 {
+        font-size: 18px;
+    }
+}
+
 .close-button {
     position: absolute;
     top: 10px;
