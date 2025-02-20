@@ -90,7 +90,7 @@ function toggleHoldingsOverlay() {
     overlay.classList.toggle("hidden");
 
     // Clear existing content
-    overlay.innerHTML = "";
+    overlay.innerHTML = '<span class="close-button" onclick="closeOverlay()">x</span>';
 
     // Populate with holdings in the condensed format
     currentHoldings.forEach(holding => {
@@ -101,6 +101,10 @@ function toggleHoldingsOverlay() {
     });
 
     overlay.style.display = overlay.style.display === "none" ? "block" : "none";
+}
+
+function closeOverlay() {
+    document.getElementById("holdings-overlay").style.display = "none";
 }
 
 // Attach the function to the graph emoji
