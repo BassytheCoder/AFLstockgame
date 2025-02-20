@@ -138,7 +138,7 @@
             }
         }
 
-        function buyStock(index, playerList = players) {
+        function buyStock(index, playerList) {
             const player = playerList[index];
             openSharesModal((shares) => {
                 if (isNaN(shares) || shares <= 0) return;
@@ -154,7 +154,7 @@
             });
         }
 
-        function shortStock(index, playerList = players) {
+        function shortStock(index, playerList) {
             const player = playerList[index];
             openSharesModal((shares) => {
                 if (isNaN(shares) || shares <= 0) return;
