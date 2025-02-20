@@ -101,9 +101,6 @@ function populatePlayers() {
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
 
-    document.getElementById("page-number").innerText = `Page ${currentPage}`;
-}
-
 function buyStock(index) {
     const startIndex = (currentPage - 1) * playersPerPage;
     const player = players[startIndex + index];
