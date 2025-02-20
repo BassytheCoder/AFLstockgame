@@ -6,21 +6,31 @@ let currentHoldings = JSON.parse(localStorage.getItem("currentHoldings")) || [];
 
 function searchPlayers() {
     let input = document.getElementById('searchBar').value.toLowerCase();
-    let rows = document.getElementById('players-table').getElementsByTagName('tr');
+    let table = document.getElementById('players-table');
+    table.innerHTML = '';
 
-    for (let i = 0; i < rows.length; i++) {
-        let playerName = rows[i].getElementsByTagName('td')[0];
-        if (playerName) {
-            let txtValue = playerName.textContent || playerName.innerText;
-            if (txtValue.toLowerCase().indexOf(input) > -1) {
-                rows[i].style.display = '';
-            } else {
-                rows[i].style.display = 'none';
-            }
-        }
-    }
+    // Filter players based on search input
+    let filteredPlayers = players.filter(player => player.name.toLowerCase().includes(input));
+
+    // Display filtered players
+    filteredPlayers.forEach((player, index) => {
+        let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
+        let row = `<tr class="player-container">
+            <td onclick="loadAndDisplayStats(${index}, '${player.name}')">
+                ${player.name}
+                <div class="position-container">${player.position}</div>
+                <div class="player-stats hidden" id="stats-${index}"></div>
+            </td>
+            <td><span class="team-container ${teamClass}">${player.team}</span></td>
+            <td>$${player.price.toFixed(2)}</td>
+            <td class="button-cell">
+                <button onclick="buyStock(${index})">Buy</button>
+                <button class="short" onclick="shortStock(${index})">Short</button>
+            </td>
+        </tr>`;
+        table.innerHTML += row;
+    });
 }
-
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
     localStorage.setItem("balance", balance.toFixed(2));
