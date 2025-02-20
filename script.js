@@ -223,9 +223,9 @@ function loadPlayerData() {
                     position: columns[4], // Assuming position is in the 5th column
                     price: parseFloat(columns[6]), // Assuming price is in the 7th column
                     disposals: parseFloat(columns[16]), // Assuming disposals column
-                    marks: parseInt(columns[17]), // Assuming marks column
-                    tackles: parseInt(columns[18]), // Assuming tackles column
-                    scoreInvolvements: parseInt(columns[19]) // Assuming score involvements column
+                    marks: parseInt(columns[49]), // Assuming marks column
+                    tackles: parseInt(columns[64]), // Assuming tackles column
+                    scoreInvolvements: parseInt(columns[76]) // Assuming score involvements column
                 };
             });
             populateTeamFilter();
