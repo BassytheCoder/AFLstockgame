@@ -23,7 +23,7 @@ function searchPlayers() {
     filteredPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td onclick="loadAndDisplayStats(${index}, '${player.name}')">
+            <td onclick="loadAndDisplayStats(${index}, '${player.name}', filteredPlayers)">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
                 <div class="player-stats hidden" id="stats-${index}"></div>
@@ -38,11 +38,11 @@ function searchPlayers() {
         table.innerHTML += row;
     });
 }
+
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
     localStorage.setItem("balance", balance.toFixed(2));
 }
-
 
 function setUsername() {
     let username = document.getElementById("username").value;
@@ -127,8 +127,8 @@ function populatePlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index})">Buy</button>
-                <button class="short" onclick="shortStock(${index})">Short</button>
+                <button onclick="buyStock(${index}, paginatedPlayers)">Buy</button>
+                <button class="short" onclick="shortStock(${index}, paginatedPlayers)">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
