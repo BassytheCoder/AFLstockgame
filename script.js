@@ -16,6 +16,7 @@ function setUsername() {
         alert("Please enter a username.");
         return;
     }
+    localStorage.setItem("username", username);
     document.getElementById("user-info").innerHTML = `<h3>Welcome, ${username}!</h3>`;
 }
 
@@ -79,6 +80,13 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
+// Add this function to toggle the holdings popup
+function toggleHoldingsPopup() {
+    const popup = document.getElementById("holdings-popup");
+    popup.classList.toggle("hidden");
+}
+
+// Ensure this script is included in the DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
     let storedUsername = localStorage.getItem("username");
