@@ -1,4 +1,6 @@
 let balance = parseFloat(localStorage.getItem("balance")) || 1000;
+let currentPage = 1;
+const playersPerPage = 20;
 
 const players = [
     { name: "Marcus Bontempelli", team: "Western Bulldogs", price: 19.079 },
@@ -364,6 +366,29 @@ function setUsername() {
     document.getElementById("user-info").innerHTML = `<h3>Welcome, ${username}!</h3>`;
 }
 
+function changePage(page) {
+    const totalPages = Math.ceil(players.length / playersPerPage);
+    if (page < 1) page = 1;
+    if (page > totalPages) page = totalPages;
+
+    currentPage = page;
+    populatePlayers();
+}
+
+function nextPage() {
+    changePage(currentPage + 1);
+}
+
+function prevPage() {
+    changePage(currentPage - 1);
+}
+
+function paginatePlayers(players) {
+    const start = (currentPage - 1) * playersPerPage;
+    const end = start + playersPerPage;
+    return players.slice(start, end);
+}
+
 function filterByTeam(team) {
     return players.filter(player => player.team === team);
 }
@@ -397,9 +422,11 @@ function populatePlayers() {
     const sortOrder = document.getElementById("sortOrder").value;
     filteredPlayers = sortByPrice(sortOrder);
 
+    const paginatedPlayers = paginatePlayers(filteredPlayers);
+
     let table = document.getElementById("players-table");
     table.innerHTML = "";
-    filteredPlayers.forEach((player, index) => {
+    paginatedPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td>${player.name}</td>
@@ -412,6 +439,8 @@ function populatePlayers() {
         </tr>`;
         table.innerHTML += row;
     });
+
+    document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
 
 function buyStock(index) {
@@ -521,3 +550,4 @@ document.addEventListener("DOMContentLoaded", (event) => {
     populateTeamFilter(); // Populate team filter dropdown
     populatePlayers();
 });
+
