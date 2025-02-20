@@ -40,7 +40,7 @@ function populatePlayers() {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td>${player.name}</td>
-            <td class="${teamClass}">${player.team}</td>
+            <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td>
                 <button onclick="buyStock(${index})">Buy</button>
