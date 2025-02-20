@@ -160,4 +160,74 @@ button.sell:hover {
     color: #FFFFFF;            /* Secondary color */
 }
 
+.essendon {
+    background-color: #000000; /* Primary color */
+    color: #D51217;            /* Secondary color */
+}
+
+.fremantle {
+    background-color: #2A1A54; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.geelong {
+    background-color: #1C3C63; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.gold-coast {
+    background-color: #E21836; /* Primary color */
+    color: #FFD700;            /* Secondary color */
+}
+
+.gws-giants {
+    background-color: #F15C22; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.hawthorn {
+    background-color: #4A2511; /* Primary color */
+    color: #FFCD00;            /* Secondary color */
+}
+
+.melbourne {
+    background-color: #0E1A2D; /* Primary color */
+    color: #D51217;            /* Secondary color */
+}
+
+.north-melbourne {
+    background-color: #013A81; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.port-adelaide {
+    background-color: #01B3E3; /* Primary color */
+    color: #000000;            /* Secondary color */
+}
+
+.richmond {
+    background-color: #000000; /* Primary color */
+    color: #FBE300;            /* Secondary color */
+}
+
+.st-kilda {
+    background-color: #000000; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.sydney {
+    background-color: #D51217; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
+.west-coast-eagles {
+    background-color: #003087; /* Primary color */
+    color: #FFC423;            /* Secondary color */
+}
+
+.western-bulldogs {
+    background-color: #002B5C; /* Primary color */
+    color: #FFFFFF;            /* Secondary color */
+}
+
 /* Add more teams as needed */
