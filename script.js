@@ -9,17 +9,14 @@ function searchPlayers() {
     let table = document.getElementById('players-table');
     table.innerHTML = '';
 
-    // Filter players based on search input
     let filteredPlayers = players.filter(player => player.name.toLowerCase().includes(input));
 
-    // If the search bar is empty, reset to the first page
     if (input === '') {
         currentPage = 1;
         populatePlayers();
         return;
     }
 
-    // Display filtered players without pagination
     filteredPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
@@ -31,13 +28,14 @@ function searchPlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index}, ${JSON.stringify(filteredPlayers)})">Buy</button>
-                <button class="short" onclick="shortStock(${index}, ${JSON.stringify(filteredPlayers)})">Short</button>
+                <button onclick="buyStock(${index})">Buy</button>
+                <button class="short" onclick="shortStock(${index})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
     });
 }
+
 
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
@@ -101,7 +99,6 @@ function populateTeamFilter() {
 }
 
 function populatePlayers() {
-    console.log("Populating players");
     let filteredPlayers = players;
 
     const teamFilter = document.getElementById("teamFilter").value;
@@ -127,8 +124,8 @@ function populatePlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index}, ${JSON.stringify(paginatedPlayers)})">Buy</button>
-                <button class="short" onclick="shortStock(${index}, ${JSON.stringify(paginatedPlayers)})">Short</button>
+                <button onclick="buyStock(${index})">Buy</button>
+                <button class="short" onclick="shortStock(${index})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
@@ -162,8 +159,8 @@ function loadAndDisplayStats(index, playerName) {
     }
 }
 
-function buyStock(index, playerList) {
-    const player = playerList[index];
+function buyStock(index) {
+    const player = players[index];
     let shares = parseInt(prompt("Enter number of shares to buy:"));
     if (isNaN(shares) || shares <= 0) return;
     let cost = shares * player.price;
@@ -177,8 +174,8 @@ function buyStock(index, playerList) {
     console.log("Bought shares:", shares, "Cost:", cost, "New Balance:", balance);
 }
 
-function shortStock(index, playerList) {
-    const player = playerList[index];
+function shortStock(index) {
+    const player = players[index];
     let shares = parseInt(prompt("Enter number of shares to short:"));
     if (isNaN(shares) || shares <= 0) return;
     let revenue = shares * player.price;
