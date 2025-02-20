@@ -139,6 +139,14 @@ button.sell:hover {
     background-color: darkorange;
 }
 
+.team-container {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+}
+
 /* Team colors */
 .adelaide {
     background-color: #002B5C; /* Primary color */
@@ -229,5 +237,3 @@ button.sell:hover {
     background-color: #002B5C; /* Primary color */
     color: #FFFFFF;            /* Secondary color */
 }
-
-/* Add more teams as needed */
