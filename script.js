@@ -2,6 +2,10 @@ let balance = 1000;
 let players = [
     { name: "Marcus Bontempelli", team: "Western Bulldogs", price: 19.079 },
     { name: "Patrick Cripps", team: "Carlton", price: 18.317 },
+    { name: "George Wardlaw", team: "North Melbourne", price: 9.14 },
+    { name: "Will Day", team: "Hawthorn", price: 13.344 },
+    { name: "Sam Durham", team: "Essendon", price: 11.19 },
+    { name: "Harley Reid", team: "West Coast Eagles", price: 10.12 },
     { name: "Isaac Heeney", team: "Sydney", price: 17.304 },
     // ... (other players)
 ];
