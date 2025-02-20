@@ -31,8 +31,8 @@ function searchPlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index}, filteredPlayers)">Buy</button>
-                <button class="short" onclick="shortStock(${index}, filteredPlayers)">Short</button>
+                <button onclick="buyStock(${index}, ${JSON.stringify(filteredPlayers)})">Buy</button>
+                <button class="short" onclick="shortStock(${index}, ${JSON.stringify(filteredPlayers)})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
@@ -127,8 +127,8 @@ function populatePlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index}, paginatedPlayers)">Buy</button>
-                <button class="short" onclick="shortStock(${index}, paginatedPlayers)">Short</button>
+                <button onclick="buyStock(${index}, ${JSON.stringify(paginatedPlayers)})">Buy</button>
+                <button class="short" onclick="shortStock(${index}, ${JSON.stringify(paginatedPlayers)})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
@@ -182,7 +182,7 @@ function openSharesModal(callback) {
     }
 }
 
-function buyStock(index, playerList = players) {
+function buyStock(index, playerList) {
     const player = playerList[index];
     openSharesModal((shares) => {
         if (isNaN(shares) || shares <= 0) return;
@@ -198,7 +198,7 @@ function buyStock(index, playerList = players) {
     });
 }
 
-function shortStock(index, playerList = players) {
+function shortStock(index, playerList) {
     const player = playerList[index];
     openSharesModal((shares) => {
         if (isNaN(shares) || shares <= 0) return;
