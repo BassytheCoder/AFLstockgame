@@ -79,7 +79,7 @@ function shortStock(index) {
 function addToHoldings(player, team, shares, type, price) {
     currentHoldings.push({ player, team, shares, type, price });
     localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
-    updateHoldingsTable();
+    updateHoldingsBox();
 }
 
 function sellStock(playerName) {
@@ -100,59 +100,21 @@ function sellStock(playerName) {
         currentHoldings = currentHoldings.filter(h => h.player !== playerName);
     }
     localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
-    updateHoldingsTable();
+    updateHoldingsBox();
     updateBalance();
 }
 
-function updateHoldingsTable() {
-    let table = document.getElementById("holdings-table");
-    table.innerHTML = `<tr>
-        <th>Player</th>
-        <th>Team</th>
-        <th>Shares</th>
-        <th>Type</th>
-        <th>Price</th>
-        <th>Total Value</th>
-        <th>Action</th>
-    </tr>`;
-    currentHoldings.forEach(holding => {
-        let totalValue = (holding.shares * holding.price).toFixed(2);
-        let row = `<tr>
-            <td>${holding.player}</td>
-            <td>${holding.team}</td>
-            <td>${holding.shares}</td>
-            <td>${holding.type}</td>
-            <td>$${holding.price.toFixed(2)}</td>
-            <td>$${totalValue}</td>
-            <td><button class="sell" onclick="sellStock('${holding.player}')">Sell Position</button></td>
-        </tr>`;
-        table.innerHTML += row;
-    });
-}
+function updateHoldingsBox() {
+    const box = document.getElementById("holdings-box");
+    box.innerHTML = "";
 
-function toggleHoldingsOverlay() {
-    const overlay = document.getElementById("holdings-overlay");
-    overlay.classList.toggle("hidden");
-
-    // Clear existing content
-    overlay.innerHTML = '<span class="close-button" onclick="closeOverlay()">x</span>';
-
-    // Populate with holdings in the condensed format
     currentHoldings.forEach(holding => {
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
-        overlay.innerHTML += holdingItem;
+        box.innerHTML += holdingItem;
     });
 }
-
-function closeOverlay() {
-    const overlay = document.getElementById("holdings-overlay");
-    overlay.classList.add("hidden");
-}
-
-// Attach the function to the graph emoji
-document.getElementById("holdings-icon").addEventListener("click", toggleHoldingsOverlay);
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
@@ -161,6 +123,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("user-info").innerHTML = `<h3>Welcome back, ${storedUsername}!</h3>`;
     }
     updateBalance();
-    updateHoldingsTable();
+    updateHoldingsBox();
     populatePlayers();
 });
