@@ -444,25 +444,31 @@ function populatePlayers() {
 }
 
 function buyStock(index) {
+    const startIndex = (currentPage - 1) * playersPerPage;
+    const player = players[startIndex + index];
+    
     let shares = parseInt(prompt("Enter number of shares to buy:"));
     if (isNaN(shares) || shares <= 0) return;
-    let cost = shares * players[index].price;
+    let cost = shares * player.price;
     if (cost > balance) {
         alert("Insufficient balance!");
         return;
     }
     balance -= cost;
     updateBalance();
-    addToHoldings(players[index].name, players[index].team, shares, "Buy", players[index].price);
+    addToHoldings(player.name, player.team, shares, "Buy", player.price);
 }
 
 function shortStock(index) {
+    const startIndex = (currentPage - 1) * playersPerPage;
+    const player = players[startIndex + index];
+
     let shares = parseInt(prompt("Enter number of shares to short:"));
     if (isNaN(shares) || shares <= 0) return;
-    let revenue = shares * players[index].price;
+    let revenue = shares * player.price;
     balance += revenue;
     updateBalance();
-    addToHoldings(players[index].name, players[index].team, shares, "Short", players[index].price);
+    addToHoldings(player.name, player.team, shares, "Short", player.price);
 }
 
 function addToHoldings(player, team, shares, type, price) {
