@@ -86,3 +86,25 @@ button:hover {
 #holdings-popup h2 {
     margin-top: 0;
 }
+
+/* Add these styles for the overlay */
+#holdings-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+#holdings-overlay .holding-item {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#holdings-overlay .holding-item b {
+    font-weight: bold;
+}
