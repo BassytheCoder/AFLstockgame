@@ -20,13 +20,13 @@ function populatePlayers() {
     let table = document.getElementById("players-table");
     table.innerHTML = "";
     players.forEach((player, index) => {
-        let row = `<tr>
+        let row = `<tr class="player-container">
             <td>${player.name}</td>
             <td>${player.team}</td>
             <td>$${player.price.toFixed(2)}</td>
             <td>
                 <button onclick="buyStock(${index})">Buy</button>
-                <button onclick="shortStock(${index})">Short</button>
+                <button class="short" onclick="shortStock(${index})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
