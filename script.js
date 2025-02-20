@@ -37,9 +37,10 @@ function populatePlayers() {
     let table = document.getElementById("players-table");
     table.innerHTML = "";
     players.forEach((player, index) => {
+        let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td>${player.name}</td>
-            <td>${player.team}</td>
+            <td class="${teamClass}">${player.team}</td>
             <td>$${player.price.toFixed(2)}</td>
             <td>
                 <button onclick="buyStock(${index})">Buy</button>
