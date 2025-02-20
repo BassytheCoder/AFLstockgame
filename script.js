@@ -10,6 +10,8 @@ let players = [
     // ... (other players)
 ];
 
+let currentHoldings = [];
+
 function setUsername() {
     let username = document.getElementById("username").value;
     if (username.trim() === "") {
@@ -65,6 +67,7 @@ function shortStock(index) {
 }
 
 function addToHoldings(player, team, shares, type, price) {
+    currentHoldings.push({ player, team, shares, type, price });
     let table = document.getElementById("holdings-table");
     let row = `<tr>
         <td>${player}</td>
@@ -80,13 +83,34 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
-// Add this function to toggle the holdings popup
 function toggleHoldingsPopup() {
     const popup = document.getElementById("holdings-popup");
     popup.classList.toggle("hidden");
+    
+    // Clear the existing holdings
+    document.getElementById("holdings-table").innerHTML = "";
+
+    // Add a header row for visibility
+    let headerRow = `<tr>
+        <th>Player</th>
+        <th>Price</th>
+        <th>Value</th>
+    </tr>`;
+    document.getElementById("holdings-table").innerHTML += headerRow;
+
+    // Re-add the holdings with the condensed format
+    currentHoldings.forEach(holding => {
+        let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
+        let value = (holding.shares * holding.price).toFixed(2);
+        let row = `<tr>
+            <td>${condensedName}</td>
+            <td>$${holding.price.toFixed(2)}</td>
+            <td>(${value})</td>
+        </tr>`;
+        document.getElementById("holdings-table").innerHTML += row;
+    });
 }
 
-// Ensure this script is included in the DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
     let storedUsername = localStorage.getItem("username");
