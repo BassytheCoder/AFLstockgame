@@ -15,7 +15,6 @@
             <button onclick="setUsername()">Start</button>
         </div>
 
-
         <div>
             <label for="teamFilter">Filter by Team:</label>
             <select id="teamFilter" onchange="populatePlayers()">
@@ -28,6 +27,26 @@
                 <option value="asc">Price: Low to High</option>
                 <option value="desc">Price: High to Low</option>
             </select>
+        </div>
+
+        <!-- Move the holdings pop-up here -->
+        <div id="holdings-popup" class="hidden">
+            <h2>Your Holdings</h2>
+            <p>Balance: $<span id="balance">1000.00</span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Shares</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="holdings-table">
+                    <!-- User's holdings will appear here -->
+                </tbody>
+            </table>
         </div>
 
         <div id="player-list">
@@ -74,24 +93,6 @@
 
         <!-- Add these elements for the icon and pop-up -->
         <div id="holdings-icon" onclick="toggleHoldingsOverlay()">📈</div>
-        <div id="holdings-popup" class="hidden">
-            <h2>Your Holdings</h2>
-            <p>Balance: $<span id="balance">1000.00</span></p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Player</th>
-                        <th>Team</th>
-                        <th>Shares</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody id="holdings-table">
-                    <!-- User's holdings will appear here -->
-                </tbody>
-            </table>
-        </div>
 
         <!-- Add these elements for the overlay -->
         <div id="holdings-overlay" class="hidden">
