@@ -114,9 +114,9 @@ function loadAndDisplayStats(index, playerName) {
                     const columns = playerRow.split(',');
                     const playerStats = `
                         ${parseFloat(columns[16]).toFixed(1)} Disp 
-                        ${parseFloat(columns[17]).toFixed(1)} Mks 
-                        ${parseFloat(columns[18]).toFixed(1)} Tckl 
-                        ${parseFloat(columns[19]).toFixed(1)} Si
+                        ${parseFloat(columns[49]).toFixed(1)} Mks 
+                        ${parseFloat(columns[64]).toFixed(1)} Tckl 
+                        ${parseFloat(columns[76]).toFixed(1)} Si
                     `;
                     statsDiv.innerHTML = playerStats;
                 }
