@@ -11,8 +11,6 @@ let players = [
     { name: "Patrick Dangerfield", team: "Geelong", price: 12.911 },
     { name: "Zak Butters", team: "Port Adelaide", price: 14.923 },
     { name: "Jake Soligo", team: "Adelaide", price: 8.225 },
-    let balance = parseFloat(localStorage.getItem("balance")) || 1000;
-let players = [
     { name: "Bayley Fritsch", team: "Melbourne", price: 8.97 },
     { name: "Charlie Spargo", team: "Melbourne", price: 2.5 },
     { name: "Kade Chandler", team: "Melbourne", price: 8.991 },
