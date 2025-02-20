@@ -95,6 +95,7 @@ button:hover {
     transform: translate(-50%, -50%);
     background-color: white;
     border: 1px solid black;
+    border-radius: 10px;
     padding: 20px;
     z-index: 1000;
     display: none;
@@ -103,6 +104,8 @@ button:hover {
 #holdings-overlay .holding-item {
     font-size: 18px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #holdings-overlay .holding-item b {
@@ -115,11 +118,6 @@ button:hover {
 
 #holdings-overlay .holding-item.short b {
     color: red;
-}
-
-#holdings-overlay .holding-item {
-    display: flex;
-    justify-content: space-between;
 }
 
 .close-button {
