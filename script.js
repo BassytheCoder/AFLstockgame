@@ -93,9 +93,48 @@ function addToHoldings(player, team, shares, type, price) {
         <td>${shares}</td>
         <td>${type}</td>
         <td>$${price.toFixed(2)}</td>
+        <td><button class="sell" onclick="sellStock('${player}')">Sell Position</button></td>
     </tr>`;
     table.innerHTML += row;
     updateBalance(); // Update balance after adding to holdings
+}
+
+function sellStock(playerName) {
+    let holding = currentHoldings.find(h => h.player === playerName);
+    if (!holding) {
+        alert("You do not own any shares of this player.");
+        return;
+    }
+    let shares = parseInt(prompt("Enter number of shares to sell:"));
+    if (isNaN(shares) || shares <= 0 || shares > holding.shares) {
+        alert("Invalid number of shares.");
+        return;
+    }
+    let earnings = shares * holding.price;
+    balance += earnings;
+    holding.shares -= shares;
+    if (holding.shares === 0) {
+        currentHoldings = currentHoldings.filter(h => h.player !== playerName);
+    }
+    localStorage.setItem("currentHoldings", JSON.stringify(currentHoldings));
+    updateHoldingsTable();
+    updateBalance();
+}
+
+function updateHoldingsTable() {
+    let table = document.getElementById("holdings-table");
+    table.innerHTML = "";
+    currentHoldings.forEach(holding => {
+        let row = `<tr>
+            <td>${holding.player}</td>
+            <td>${holding.team}</td>
+            <td>${holding.shares}</td>
+            <td>${holding.type}</td>
+            <td>$${holding.price.toFixed(2)}</td>
+            <td><button class="sell" onclick="sellStock('${holding.player}')">Sell Position</button></td>
+        </tr>`;
+        table.innerHTML += row;
+    });
 }
 
 function toggleHoldingsOverlay() {
@@ -130,16 +169,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("user-info").innerHTML = `<h3>Welcome back, ${storedUsername}!</h3>`;
     }
     updateBalance();
-    currentHoldings.forEach(holding => {
-        let table = document.getElementById("holdings-table");
-        let row = `<tr>
-            <td>${holding.player}</td>
-            <td>${holding.team}</td>
-            <td>${holding.shares}</td>
-            <td>${holding.type}</td>
-            <td>$${holding.price.toFixed(2)}</td>
-        </tr>`;
-        table.innerHTML += row;
-    });
+    updateHoldingsTable();
     populatePlayers();
 });
