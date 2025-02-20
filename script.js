@@ -1,10 +1,21 @@
 let balance = 1000;
-const players = [
-    { name: "Bayley Fritsch", team: "Melbourne", price: 8.97 },
-    { name: "Charlie Spargo", team: "Melbourne", price: 2.5 },
-    { name: "Kade Chandler", team: "Melbourne", price: 8.991 },
-    { name: "Trent Rivers", team: "Melbourne", price: 11.026 }
-];
+let players = [];
+
+// Function to read CSV file and populate players array
+function readCSVFile() {
+    Papa.parse('players.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+            players = results.data.map(player => ({
+                name: player.Player,
+                team: player.Team,
+                price: parseFloat(player["Stock Price"])
+            }));
+            populatePlayers();
+        }
+    });
+}
 
 function setUsername() {
     let username = document.getElementById("username").value;
@@ -74,4 +85,4 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
-document.addEventListener("DOMContentLoaded", populatePlayers);
+document.addEventListener("DOMContentLoaded", readCSVFile);
