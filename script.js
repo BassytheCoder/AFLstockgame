@@ -113,7 +113,14 @@ function sellStock(playerName) {
 
 function updateHoldingsTable() {
     let table = document.getElementById("holdings-table");
-    table.innerHTML = "";
+    table.innerHTML = `<tr>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Shares</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>`; // Added header row
     currentHoldings.forEach(holding => {
         let row = `<tr>
             <td>${holding.player}</td>
@@ -129,7 +136,13 @@ function updateHoldingsTable() {
 
 function toggleHoldingsOverlay() {
     const overlay = document.getElementById("holdings-overlay");
-    overlay.classList.toggle("hidden");
+    if (overlay.classList.contains("hidden")) {
+        overlay.classList.remove("hidden");
+        overlay.style.display = "block";
+    } else {
+        overlay.classList.add("hidden");
+        overlay.style.display = "none";
+    }
 
     // Clear existing content
     overlay.innerHTML = '<span class="close-button" onclick="closeOverlay()">x</span>';
@@ -141,12 +154,12 @@ function toggleHoldingsOverlay() {
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
         overlay.innerHTML += holdingItem;
     });
-
-    overlay.style.display = overlay.style.display === "none" ? "block" : "none";
 }
 
 function closeOverlay() {
-    document.getElementById("holdings-overlay").style.display = "none";
+    const overlay = document.getElementById("holdings-overlay");
+    overlay.classList.add("hidden");
+    overlay.style.display = "none";
 }
 
 // Attach the function to the graph emoji
