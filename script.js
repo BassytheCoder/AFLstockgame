@@ -81,5 +81,9 @@ function updateBalance() {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOMContentLoaded event fired");
+    let storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+        document.getElementById("user-info").innerHTML = `<h3>Welcome back, ${storedUsername}!</h3>`;
+    }
     populatePlayers();
 });
