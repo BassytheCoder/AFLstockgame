@@ -374,6 +374,17 @@ function sortByPrice(order = 'asc') {
     });
 }
 
+function populateTeamFilter() {
+    const teamFilter = document.getElementById("teamFilter");
+    const teams = [...new Set(players.map(player => player.team))];
+    teams.forEach(team => {
+        const option = document.createElement("option");
+        option.value = team;
+        option.text = team;
+        teamFilter.add(option);
+    });
+}
+
 function populatePlayers() {
     console.log("populatePlayers function called");
     let filteredPlayers = players;
@@ -507,5 +518,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     updateBalance();
     updateHoldingsTable();
     updateHoldingsBox();
+    populateTeamFilter(); // Populate team filter dropdown
     populatePlayers();
 });
