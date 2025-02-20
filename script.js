@@ -130,7 +130,7 @@ function loadAndDisplayStats(index, playerName) {
 function buyStock(index) {
     const startIndex = (currentPage - 1) * playersPerPage;
     const player = players[startIndex + index];
-    
+
     let shares = parseInt(prompt("Enter number of shares to buy:"));
     if (isNaN(shares) || shares <= 0) return;
     let cost = shares * player.price;
@@ -141,6 +141,7 @@ function buyStock(index) {
     balance -= cost;
     updateBalance();
     addToHoldings(player.name, player.team, shares, "Buy", player.price);
+    console.log("Bought shares:", shares, "Cost:", cost, "New Balance:", balance);
 }
 
 function shortStock(index) {
@@ -153,6 +154,7 @@ function shortStock(index) {
     balance += revenue;
     updateBalance();
     addToHoldings(player.name, player.team, shares, "Short", player.price);
+    console.log("Shorted shares:", shares, "Revenue:", revenue, "New Balance:", balance);
 }
 
 function addToHoldings(player, team, shares, type, price) {
