@@ -12,7 +12,14 @@ function searchPlayers() {
     // Filter players based on search input
     let filteredPlayers = players.filter(player => player.name.toLowerCase().includes(input));
 
-    // Display filtered players
+    // If the search bar is empty, reset to the first page
+    if (input === '') {
+        currentPage = 1;
+        populatePlayers();
+        return;
+    }
+
+    // Display filtered players without pagination
     filteredPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
@@ -24,8 +31,8 @@ function searchPlayers() {
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index})">Buy</button>
-                <button class="short" onclick="shortStock(${index})">Short</button>
+                <button onclick="buyStock(${index}, filteredPlayers)">Buy</button>
+                <button class="short" onclick="shortStock(${index}, filteredPlayers)">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
@@ -155,9 +162,8 @@ function loadAndDisplayStats(index, playerName) {
     }
 }
 
-function buyStock(index) {
-    const startIndex = (currentPage - 1) * playersPerPage;
-    const player = players[startIndex + index];
+function buyStock(index, playerList = players) {
+    const player = playerList[index];
 
     let shares = parseInt(prompt("Enter number of shares to buy:"));
     if (isNaN(shares) || shares <= 0) return;
@@ -172,9 +178,8 @@ function buyStock(index) {
     console.log("Bought shares:", shares, "Cost:", cost, "New Balance:", balance);
 }
 
-function shortStock(index) {
-    const startIndex = (currentPage - 1) * playersPerPage;
-    const player = players[startIndex + index];
+function shortStock(index, playerList = players) {
+    const player = playerList[index];
 
     let shares = parseInt(prompt("Enter number of shares to short:"));
     if (isNaN(shares) || shares <= 0) return;
