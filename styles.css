@@ -103,6 +103,10 @@ button:hover {
     display: none;
 }
 
+#holdings-overlay.hidden {
+    display: none;
+}
+
 #holdings-overlay .holding-item {
     font-size: 18px;
     margin-bottom: 10px;
