@@ -67,12 +67,8 @@ function buyStock(index) {
 function shortStock(index) {
     let shares = parseInt(prompt("Enter number of shares to short:"));
     if (isNaN(shares) || shares <= 0) return;
-    let cost = shares * players[index].price;
-    if (cost > balance) {
-        alert("Insufficient balance!");
-        return;
-    }
-    balance -= cost;
+    let revenue = shares * players[index].price;
+    balance += revenue;
     updateBalance();
     addToHoldings(players[index].name, players[index].team, shares, "Short", players[index].price);
 }
@@ -95,8 +91,13 @@ function sellStock(playerName) {
         alert("Invalid number of shares.");
         return;
     }
-    let earnings = shares * holding.price;
-    balance += earnings;
+    let currentPrice = players.find(p => p.name === playerName).price;
+    let impact = shares * currentPrice;
+    if (holding.type === "Short") {
+        balance -= impact;
+    } else {
+        balance += impact;
+    }
     holding.shares -= shares;
     if (holding.shares === 0) {
         currentHoldings = currentHoldings.filter(h => h.player !== playerName);
