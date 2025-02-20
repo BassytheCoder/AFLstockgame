@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="game-container">
-       <h1>📈 AFL Stock Market Game</h1>
+        <h1>📈 AFL Stock Market Game</h1>
         <div id="user-info">
             <label for="username">Enter Your Username:</label>
             <input type="text" id="username" placeholder="Username">
@@ -50,8 +50,28 @@
                 </tbody>
             </table>
         </div>
+        
+        <!-- Add these elements for the icon and pop-up -->
+        <div id="holdings-icon" onclick="toggleHoldingsPopup()">📈</div>
+        <div id="holdings-popup" class="hidden">
+            <h2>Your Holdings</h2>
+            <p>Balance: $<span id="balance">1000.00</span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Shares</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="holdings-table">
+                    <!-- User's holdings will appear here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
