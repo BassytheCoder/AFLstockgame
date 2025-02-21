@@ -6,6 +6,31 @@ body {
     background-color: #f4f4f4;
 }
 
+#balance-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+}
+
+#balance-text {
+    background: linear-gradient(to right, #1e90ff, #00bfff);
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+#balance-value {
+    background: white;
+    color: black;
+    border-radius: 50%;
+    padding: 10px;
+    font-weight: bold;
+}
+
 #game-container {
     width: 80%;
     margin: auto;
