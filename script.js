@@ -18,14 +18,13 @@ function searchPlayers() {
     }
 
     filteredPlayers.forEach((player, index) => {
-        let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td onclick="loadAndDisplayStats(${players.indexOf(player)}, '${player.name}', filteredPlayers)">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
                 <div class="player-stats hidden" id="stats-${players.indexOf(player)}"></div>
             </td>
-            <td><span class="team-container ${teamClass}">${player.team}</span></td>
+            <td>${player.team}</td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
                 <button onclick="buyStock(${players.indexOf(player)})">Buy</button>
@@ -113,14 +112,13 @@ function populatePlayers() {
     let table = document.getElementById("players-table");
     table.innerHTML = "";
     paginatedPlayers.forEach((player, index) => {
-        let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
             <td onclick="loadAndDisplayStats(${players.indexOf(player)}, '${player.name}')">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
                 <div class="player-stats hidden" id="stats-${players.indexOf(player)}"></div>
             </td>
-            <td><span class="team-container ${teamClass}">${player.team}</span></td>
+            <td>${player.team}</td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
                 <button onclick="buyStock(${players.indexOf(player)})">Buy</button>
@@ -132,6 +130,7 @@ function populatePlayers() {
 
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
+
 function loadAndDisplayStats(index, playerName) {
     const statsDiv = document.getElementById(`stats-${index}`);
     if (statsDiv.classList.contains("hidden")) {
@@ -254,11 +253,9 @@ function updateHoldingsBox() {
     box.innerHTML = "";
 
     currentHoldings.forEach(holding => {
-        const teamAbbreviation = getTeamAbbreviation(holding.team);
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}">
-            <span class="team-abbreviation ${holding.team.toLowerCase().replace(/\s+/g, '-')}">${teamAbbreviation}</span>
             <b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})
         </div>`;
         box.innerHTML += holdingItem;
