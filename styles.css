@@ -104,6 +104,8 @@ th, td {
 th {
     background: linear-gradient(to right, #4CAF50, #2E7D32); /* Example: Green gradient */
     color: white;
+    border-top-left-radius: 10px; /* Rounds top-left corner */
+    border-top-right-radius: 10px; /* Rounds top-right corner */
 }
 
 button {
