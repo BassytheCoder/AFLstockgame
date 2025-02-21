@@ -227,6 +227,7 @@ function updateHoldingsTable() {
         <th>Team</th>
         <th>Shares</th>
         <th>Type</th>
+        <th>Purchase Price</th>
         <th>Price</th>
         <th>Total Value (Profit/Loss)</th>
         <th>Action</th>
@@ -242,6 +243,7 @@ function updateHoldingsTable() {
             <td>${holding.shares}</td>
             <td>${holding.type}</td>
             <td>$${holding.price.toFixed(2)}</td>
+            <td>$${currentPrice.toFixed(2)}</td>
             <td>$${totalValue} ${profitLossText}</td>
             <td><button class="sell" onclick="sellStock('${holding.player}')">Sell Position</button></td>
         </tr>`;
