@@ -272,57 +272,74 @@ button.sell:hover {
     display: block;
 }
 
-/* Team colors with abbreviations */
-.adelaide::before { content: "ADE"; }
-.adelaide { background-color: #002B5C; color: #FED102; }
+.team-container.adelaide {
+    /* Styles for Adelaide team */
+}
 
-.brisbane::before { content: "BRI"; }
-.brisbane { background-color: #A30046; color: #FDBE57; }
+.team-container.brisbane {
+    /* Styles for Brisbane team */
+}
 
-.carlton::before { content: "CAR"; }
-.carlton { background-color: #031A6E; color: #FFFFFF; }
+.team-container.carlton {
+    /* Styles for Carlton team */
+}
 
-.collingwood::before { content: "COL"; }
-.collingwood { background-color: #000000; color: #FFFFFF; }
+.team-container.collingwood {
+    /* Styles for Collingwood team */
+}
 
-.essendon::before { content: "ESS"; }
-.essendon { background-color: #000000; color: #D51217; }
+.team-container.essendon {
+    /* Styles for Essendon team */
+}
 
-.fremantle::before { content: "FRE"; }
-.fremantle { background-color: #2A1A54; color: #FFFFFF; }
+.team-container.fremantle {
+    /* Styles for Fremantle team */
+}
 
-.geelong::before { content: "GEE"; }
-.geelong { background-color: #1C3C63; color: #FFFFFF; }
+.team-container.geelong {
+    /* Styles for Geelong team */
+}
 
-.gold-coast::before { content: "GCS"; }
-.gold-coast { background-color: #E21836; color: #FFD700; }
+.team-container.gold-coast {
+    /* Styles for Gold Coast team */
+}
 
-.greater-western-sydney::before { content: "GWS"; }
-.greater-western-sydney { background-color: #F15C22; color: #FFFFFF; }
+.team-container.greater-western-sydney {
+    /* Styles for Greater Western Sydney team */
+}
 
-.hawthorn::before { content: "HAW"; }
-.hawthorn { background-color: #4A2511; color: #FFCD00; }
+.team-container.hawthorn {
+    /* Styles for Hawthorn team */
+}
 
-.melbourne::before { content: "MEL"; }
-.melbourne { background-color: #0E1A2D; color: #D51217; }
+.team-container.melbourne {
+    /* Styles for Melbourne team */
+}
 
-.north-melbourne::before { content: "NM"; }
-.north-melbourne { background-color: #013A81; color: #FFFFFF; }
+.team-container.north-melbourne {
+    /* Styles for North Melbourne team */
+}
 
-.port-adelaide::before { content: "PA"; }
-.port-adelaide { background-color: #01B3E3; color: #000000; }
+.team-container.port-adelaide {
+    /* Styles for Port Adelaide team */
+}
 
-.richmond::before { content: "RIC"; }
-.richmond { background-color: #000000; color: #FBE300; }
+.team-container.richmond {
+    /* Styles for Richmond team */
+}
 
-.st-kilda::before { content: "STK"; }
-.st-kilda { background-color: #000000; color: #FFFFFF; }
+.team-container.st-kilda {
+    /* Styles for St Kilda team */
+}
 
-.sydney::before { content: "SYD"; }
-.sydney { background-color: #D51217; color: #FFFFFF; }
+.team-container.sydney {
+    /* Styles for Sydney team */
+}
 
-.west-coast::before { content: "WC"; }
-.west-coast { background-color: #003087; color: #FFC423; }
+.team-container.west-coast {
+    /* Styles for West Coast team */
+}
 
-.western-bulldogs::before { content: "WB"; }
-.western-bulldogs { background-color: #002B5C; color: #FFFFFF; }
+.team-container.western-bulldogs {
+    /* Styles for Western Bulldogs team */
+}
