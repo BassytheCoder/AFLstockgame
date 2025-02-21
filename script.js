@@ -228,18 +228,21 @@ function updateHoldingsTable() {
         <th>Shares</th>
         <th>Type</th>
         <th>Price</th>
-        <th>Total Value</th>
+        <th>Total Value (Profit/Loss)</th>
         <th>Action</th>
     </tr>`;
     currentHoldings.forEach(holding => {
-        let totalValue = (holding.shares * holding.price).toFixed(2);
+        let currentPrice = players.find(p => p.name === holding.player).price;
+        let totalValue = (holding.shares * currentPrice).toFixed(2);
+        let profitLoss = (holding.shares * (currentPrice - holding.price)).toFixed(2);
+        let profitLossText = profitLoss >= 0 ? `(+${profitLoss})` : `(${profitLoss})`;
         let row = `<tr>
             <td>${holding.player}</td>
             <td>${holding.team}</td>
             <td>${holding.shares}</td>
             <td>${holding.type}</td>
             <td>$${holding.price.toFixed(2)}</td>
-            <td>$${totalValue}</td>
+            <td>$${totalValue} ${profitLossText}</td>
             <td><button class="sell" onclick="sellStock('${holding.player}')">Sell Position</button></td>
         </tr>`;
         table.innerHTML += row;
