@@ -114,7 +114,11 @@ body {
 }
 
 .player-container td:first-child {
-    font-weight: bold;
+    font-weight: bold; /* Keep the player name bold */
+}
+
+.player-container td:nth-child(2) {
+    font-weight: normal; /* Unbold the player position */
 }
 
 .button-cell {
