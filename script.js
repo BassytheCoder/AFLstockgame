@@ -20,16 +20,16 @@ function searchPlayers() {
     filteredPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td onclick="loadAndDisplayStats(${index}, '${player.name}', filteredPlayers)">
+            <td onclick="loadAndDisplayStats(${players.indexOf(player)}, '${player.name}', filteredPlayers)">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
-                <div class="player-stats hidden" id="stats-${index}"></div>
+                <div class="player-stats hidden" id="stats-${players.indexOf(player)}"></div>
             </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index})">Buy</button>
-                <button class="short" onclick="shortStock(${index})">Short</button>
+                <button onclick="buyStock(${players.indexOf(player)})">Buy</button>
+                <button class="short" onclick="shortStock(${players.indexOf(player)})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
@@ -116,16 +116,16 @@ function populatePlayers() {
     paginatedPlayers.forEach((player, index) => {
         let teamClass = player.team.toLowerCase().replace(/\s+/g, '-');
         let row = `<tr class="player-container">
-            <td onclick="loadAndDisplayStats(${index}, '${player.name}')">
+            <td onclick="loadAndDisplayStats(${players.indexOf(player)}, '${player.name}')">
                 ${player.name}
                 <div class="position-container">${player.position}</div>
-                <div class="player-stats hidden" id="stats-${index}"></div>
+                <div class="player-stats hidden" id="stats-${players.indexOf(player)}"></div>
             </td>
             <td><span class="team-container ${teamClass}">${player.team}</span></td>
             <td>$${player.price.toFixed(2)}</td>
             <td class="button-cell">
-                <button onclick="buyStock(${index})">Buy</button>
-                <button class="short" onclick="shortStock(${index})">Short</button>
+                <button onclick="buyStock(${players.indexOf(player)})">Buy</button>
+                <button class="short" onclick="shortStock(${players.indexOf(player)})">Short</button>
             </td>
         </tr>`;
         table.innerHTML += row;
