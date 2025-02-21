@@ -113,6 +113,10 @@ body {
     background-color: #fff;
 }
 
+.player-container td:first-child {
+    font-weight: bold;
+}
+
 .button-cell {
     text-align: center;
     vertical-align: middle;
