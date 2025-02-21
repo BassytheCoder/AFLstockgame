@@ -272,74 +272,39 @@ button.sell:hover {
     display: block;
 }
 
-.team-container.adelaide {
-    /* Styles for Adelaide team */
-}
+/* Team colors */
+.adelaide { background-color: #002B5C; color: #FED102; }
 
-.team-container.brisbane {
-    /* Styles for Brisbane team */
-}
+.brisbane { background-color: #A30046; color: #FDBE57; }
 
-.team-container.carlton {
-    /* Styles for Carlton team */
-}
+.carlton { background-color: #031A6E; color: #FFFFFF; }
 
-.team-container.collingwood {
-    /* Styles for Collingwood team */
-}
+.collingwood { background-color: #000000; color: #FFFFFF; }
 
-.team-container.essendon {
-    /* Styles for Essendon team */
-}
+.essendon { background-color: #000000; color: #D51217; }
 
-.team-container.fremantle {
-    /* Styles for Fremantle team */
-}
+.fremantle { background-color: #2A1A54; color: #FFFFFF; }
 
-.team-container.geelong {
-    /* Styles for Geelong team */
-}
+.geelong { background-color: #1C3C63; color: #FFFFFF; }
 
-.team-container.gold-coast {
-    /* Styles for Gold Coast team */
-}
+.gold-coast { background-color: #E21836; color: #FFD700; }
 
-.team-container.greater-western-sydney {
-    /* Styles for Greater Western Sydney team */
-}
+.greater-western-sydney { background-color: #F15C22; color: #FFFFFF; }
 
-.team-container.hawthorn {
-    /* Styles for Hawthorn team */
-}
+.hawthorn { background-color: #4A2511; color: #FFCD00; }
 
-.team-container.melbourne {
-    /* Styles for Melbourne team */
-}
+.melbourne { background-color: #0E1A2D; color: #D51217; }
 
-.team-container.north-melbourne {
-    /* Styles for North Melbourne team */
-}
+.north-melbourne { background-color: #013A81; color: #FFFFFF; }
 
-.team-container.port-adelaide {
-    /* Styles for Port Adelaide team */
-}
+.port-adelaide { background-color: #01B3E3; color: #000000; }
 
-.team-container.richmond {
-    /* Styles for Richmond team */
-}
+.richmond { background-color: #000000; color: #FBE300; }
 
-.team-container.st-kilda {
-    /* Styles for St Kilda team */
-}
+.st-kilda { background-color: #000000; color: #FFFFFF; }
 
-.team-container.sydney {
-    /* Styles for Sydney team */
-}
+.sydney { background-color: #D51217; color: #FFFFFF; }
 
-.team-container.west-coast {
-    /* Styles for West Coast team */
-}
+.west-coast { background-color: #003087; color: #FFC423; }
 
-.team-container.western-bulldogs {
-    /* Styles for Western Bulldogs team */
-}
+.western-bulldogs { background-color: #002B5C; color: #FFFFFF; }
