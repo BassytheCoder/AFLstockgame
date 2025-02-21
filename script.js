@@ -260,7 +260,7 @@ function updateHoldingsBox() {
         let value = (holding.shares * holding.price).toFixed(2);
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}">
             <span class="team-abbreviation ${holding.team.toLowerCase().replace(/\s+/g, '-')}">${teamAbbreviation}</span>
-            <b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})
+            <b>${condensedName}</b> $ ${holding.price.toFixed(2)} (${value}) <!-- Added space between price and player name -->
         </div>`;
         box.innerHTML += holdingItem;
     });
