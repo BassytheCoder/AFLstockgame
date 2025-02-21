@@ -255,11 +255,40 @@ function updateHoldingsBox() {
     box.innerHTML = "";
 
     currentHoldings.forEach(holding => {
+        const teamAbbreviation = getTeamAbbreviation(holding.team); // Function to get team abbreviation
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
-        let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}"><b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})</div>`;
+        let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}">
+            <span class="team-abbreviation ${holding.team.toLowerCase().replace(/\s+/g, '-')}">${teamAbbreviation}</span>
+            <b>${condensedName}</b> $${holding.price.toFixed(2)} (${value})
+        </div>`;
         box.innerHTML += holdingItem;
     });
+}
+
+// Function to get team abbreviation
+function getTeamAbbreviation(team) {
+    const teamAbbreviations = {
+        "Adelaide": "ADE",
+        "Brisbane": "BRI",
+        "Carlton": "CAR",
+        "Collingwood": "COL",
+        "Essendon": "ESS",
+        "Fremantle": "FRE",
+        "Geelong": "GEE",
+        "Gold Coast": "GCS",
+        "Greater Western Sydney": "GWS",
+        "Hawthorn": "HAW",
+        "Melbourne": "MEL",
+        "North Melbourne": "NM",
+        "Port Adelaide": "PA",
+        "Richmond": "RIC",
+        "St Kilda": "STK",
+        "Sydney": "SYD",
+        "West Coast": "WC",
+        "Western Bulldogs": "WB"
+    };
+    return teamAbbreviations[team] || team;
 }
 
 function loadPlayerData() {
