@@ -7,18 +7,18 @@ body {
 }
 
 #balance-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    align-items: center;
+    display: inline-block;
     font-size: 2em;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin-top: 5px;
 }
 
 #balance-text {
     background: linear-gradient(to right, #1e90ff, #00bfff);
     color: white;
-    border-radius: 50%;
     padding: 10px;
     margin-right: 10px;
 }
@@ -26,9 +26,9 @@ body {
 #balance-value {
     background: white;
     color: black;
-    border-radius: 50%;
     padding: 10px;
     font-weight: bold;
+    display: inline-block;
 }
 
 #game-container {
