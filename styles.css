@@ -210,6 +210,15 @@ button:hover {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Align items vertically */
+}
+
+#holdings-box .holding-item .team-abbreviation {
+    margin-right: 10px; /* Space between team abbreviation and player name */
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
 }
 
 #holdings-box .holding-item b {
@@ -263,93 +272,57 @@ button.sell:hover {
     display: block;
 }
 
-/* Team colors */
-.adelaide {
-    background-color: #002B5C; /* Primary color */
-    color: #FED102;           /* Secondary color */
-}
+/* Team colors with abbreviations */
+.adelaide::before { content: "ADE"; }
+.adelaide { background-color: #002B5C; color: #FED102; }
 
-.brisbane {
-    background-color: #A30046; /* Primary color */
-    color: #FDBE57;            /* Secondary color */
-}
+.brisbane::before { content: "BRI"; }
+.brisbane { background-color: #A30046; color: #FDBE57; }
 
-.carlton {
-    background-color: #031A6E; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.carlton::before { content: "CAR"; }
+.carlton { background-color: #031A6E; color: #FFFFFF; }
 
-.collingwood {
-    background-color: #000000; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.collingwood::before { content: "COL"; }
+.collingwood { background-color: #000000; color: #FFFFFF; }
 
-.essendon {
-    background-color: #000000; /* Primary color */
-    color: #D51217;            /* Secondary color */
-}
+.essendon::before { content: "ESS"; }
+.essendon { background-color: #000000; color: #D51217; }
 
-.fremantle {
-    background-color: #2A1A54; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.fremantle::before { content: "FRE"; }
+.fremantle { background-color: #2A1A54; color: #FFFFFF; }
 
-.geelong {
-    background-color: #1C3C63; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.geelong::before { content: "GEE"; }
+.geelong { background-color: #1C3C63; color: #FFFFFF; }
 
-.gold-coast {
-    background-color: #E21836; /* Primary color */
-    color: #FFD700;            /* Secondary color */
-}
+.gold-coast::before { content: "GCS"; }
+.gold-coast { background-color: #E21836; color: #FFD700; }
 
-.greater-western-sydney {
-    background-color: #F15C22; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.greater-western-sydney::before { content: "GWS"; }
+.greater-western-sydney { background-color: #F15C22; color: #FFFFFF; }
 
-.hawthorn {
-    background-color: #4A2511; /* Primary color */
-    color: #FFCD00;            /* Secondary color */
-}
+.hawthorn::before { content: "HAW"; }
+.hawthorn { background-color: #4A2511; color: #FFCD00; }
 
-.melbourne {
-    background-color: #0E1A2D; /* Primary color */
-    color: #D51217;            /* Secondary color */
-}
+.melbourne::before { content: "MEL"; }
+.melbourne { background-color: #0E1A2D; color: #D51217; }
 
-.north-melbourne {
-    background-color: #013A81; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.north-melbourne::before { content: "NM"; }
+.north-melbourne { background-color: #013A81; color: #FFFFFF; }
 
-.port-adelaide {
-    background-color: #01B3E3; /* Primary color */
-    color: #000000;            /* Secondary color */
-}
+.port-adelaide::before { content: "PA"; }
+.port-adelaide { background-color: #01B3E3; color: #000000; }
 
-.richmond {
-    background-color: #000000; /* Primary color */
-    color: #FBE300;            /* Secondary color */
-}
+.richmond::before { content: "RIC"; }
+.richmond { background-color: #000000; color: #FBE300; }
 
-.st-kilda {
-    background-color: #000000; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.st-kilda::before { content: "STK"; }
+.st-kilda { background-color: #000000; color: #FFFFFF; }
 
-.sydney {
-    background-color: #D51217; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.sydney::before { content: "SYD"; }
+.sydney { background-color: #D51217; color: #FFFFFF; }
 
-.west-coast {
-    background-color: #003087; /* Primary color */
-    color: #FFC423;            /* Secondary color */
-}
+.west-coast::before { content: "WC"; }
+.west-coast { background-color: #003087; color: #FFC423; }
 
-.western-bulldogs {
-    background-color: #002B5C; /* Primary color */
-    color: #FFFFFF;            /* Secondary color */
-}
+.western-bulldogs::before { content: "WB"; }
+.western-bulldogs { background-color: #002B5C; color: #FFFFFF; }
