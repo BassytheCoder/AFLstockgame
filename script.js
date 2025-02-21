@@ -36,7 +36,6 @@ function searchPlayers() {
     });
 }
 
-
 function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
     localStorage.setItem("balance", balance.toFixed(2));
@@ -80,7 +79,7 @@ function filterByTeam(team) {
     return players.filter(player => player.team === team);
 }
 
-function sortByPrice(order = 'asc') {
+function sortByPrice(players, order = 'asc') { // Changed to accept players and order as parameters
     return players.sort((a, b) => {
         return order === 'asc' ? a.price - b.price : b.price - a.price;
     });
@@ -102,12 +101,12 @@ function populatePlayers() {
     let filteredPlayers = players;
 
     const teamFilter = document.getElementById("teamFilter").value;
-    if (teamFilter) {
+    if (teamFilter !== "") { // Changed to explicitly check for non-empty string
         filteredPlayers = filterByTeam(teamFilter);
     }
 
     const sortOrder = document.getElementById("sortOrder").value;
-    filteredPlayers = sortByPrice(sortOrder);
+    filteredPlayers = sortByPrice(filteredPlayers, sortOrder); // Pass filteredPlayers and sortOrder
 
     const paginatedPlayers = paginatePlayers(filteredPlayers);
 
