@@ -101,12 +101,12 @@ function populatePlayers() {
     let filteredPlayers = players;
 
     const teamFilter = document.getElementById("teamFilter").value;
-    if (teamFilter !== "") { // Changed to explicitly check for non-empty string
+    if (teamFilter !== "") {
         filteredPlayers = filterByTeam(teamFilter);
     }
 
     const sortOrder = document.getElementById("sortOrder").value;
-    filteredPlayers = sortByPrice(filteredPlayers, sortOrder); // Pass filteredPlayers and sortOrder
+    filteredPlayers = sortByPrice(filteredPlayers, sortOrder);
 
     const paginatedPlayers = paginatePlayers(filteredPlayers);
 
@@ -132,7 +132,6 @@ function populatePlayers() {
 
     document.getElementById("page-number").innerText = `Page ${currentPage}`;
 }
-
 function loadAndDisplayStats(index, playerName) {
     const statsDiv = document.getElementById(`stats-${index}`);
     if (statsDiv.classList.contains("hidden")) {
@@ -255,7 +254,7 @@ function updateHoldingsBox() {
     box.innerHTML = "";
 
     currentHoldings.forEach(holding => {
-        const teamAbbreviation = getTeamAbbreviation(holding.team); // Function to get team abbreviation
+        const teamAbbreviation = getTeamAbbreviation(holding.team);
         let condensedName = `${holding.player.split(" ")[0][0]}.${holding.player.split(" ")[1].substring(0, 3).toUpperCase()}`;
         let value = (holding.shares * holding.price).toFixed(2);
         let holdingItem = `<div class="holding-item ${holding.type.toLowerCase()}">
